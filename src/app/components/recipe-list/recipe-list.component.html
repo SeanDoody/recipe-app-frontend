@@ -1,0 +1,5 @@
+<app-search-criteria (newSearchEvent)="searchForRecipes($event)"></app-search-criteria>
+<div *ngFor="let recipe of recipeList">
+    <img src="{{ recipe.imageUrl }}" alt="image">
+    <h3>{{ recipe.recipeName }}</h3>
+</div>

@@ -1,6 +1,14 @@
 <app-search-criteria (newSearchEvent)="searchForRecipes($event)"></app-search-criteria>
-<div *ngFor="let recipe of recipeList">
+<div *ngFor="let recipe of recipeList" class="recipe">
     <img src="{{ recipe.imageUrl }}" alt="image">
-    <h3>{{ recipe.recipeName }}</h3>
-    <mat-icon>favorite_border</mat-icon>
+    <div class="recipe-text">
+        <div class="left-side">
+            <h3>{{ recipe.recipeName }}</h3>
+            <a href="{{ recipe.url }}" target="_blank">{{ recipe.source }}</a>
+        </div>
+        <div class="right-side">
+            <mat-icon>favorite_border</mat-icon>
+            <!-- <mat-icon>favorite</mat-icon> -->
+        </div>
+    </div>
 </div>

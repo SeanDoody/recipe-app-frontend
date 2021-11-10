@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EdamamApiService } from 'src/app/services/edamam-api/edamam-api.service';
 import { Recipe } from 'src/app/models/recipe';
-import { SearchEvent } from 'src/app/models/search-event';
 
 @Component({
   selector: 'app-recipe-list',

@@ -20,6 +20,7 @@ export class EdamamApiService {
         app_id: this.appId,
         app_key: this.appKey,
         type: "public",
+        random: true,
         q: searchEvent.keywords,
         dishType: searchEvent.dishType,
         health: searchEvent.dietaryRestrictions

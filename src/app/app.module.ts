@@ -7,6 +7,8 @@ import { RecipeListComponent } from './components/recipe-list/recipe-list.compon
 import { FavoritesPageComponent } from './components/favorites-page/favorites-page.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    // MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

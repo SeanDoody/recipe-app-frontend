@@ -20,8 +20,9 @@ export class SearchCriteriaComponent implements OnInit {
       dishType: this.dishType,
       dietaryRestrictions: this.dietaryRestrictions
     };
-    console.log(newEvent);
     this.newSearchEvent.emit(newEvent);
+    console.log("emitted:");
+    console.log(newEvent);
   }
 
   constructor() { }

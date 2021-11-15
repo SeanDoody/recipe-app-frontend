@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EdamamApiService } from 'src/app/services/edamam-api/edamam-api.service';
 import { Recipe } from 'src/app/models/recipe';
+import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -10,13 +11,10 @@ import { Recipe } from 'src/app/models/recipe';
 export class RecipeListComponent implements OnInit {
 
   recipeList: Recipe[] = [];
-  favoriteRecipes: Recipe[] = [];
 
-  constructor(private service: EdamamApiService) { }
+  constructor(private edamamApiService: EdamamApiService, private favoritesService: FavoritesService ) { }
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void { }
 
   updateRecipeList(apiData: any): void {
     this.recipeList = [];
@@ -42,7 +40,7 @@ export class RecipeListComponent implements OnInit {
   }
 
   searchForRecipes(searchEvent: any): void {
-    this.service.getRecipes(searchEvent).subscribe((data: any) => {
+    this.edamamApiService.getRecipes(searchEvent).subscribe((data: any) => {
       this.updateRecipeList(data);
       console.log("API data from new search:");
       console.log(data);
@@ -50,28 +48,15 @@ export class RecipeListComponent implements OnInit {
   }
 
   isRecipeSaved(recipe: Recipe): boolean {
-    let recipeSaved: boolean = false;
-    let recipeLink: string = recipe.recipeLink;
-    for (let savedRecipe of this.favoriteRecipes) {
-      if (savedRecipe.recipeLink === recipeLink) {
-        recipeSaved = true;
-        break;
-      }
-    }
-    return recipeSaved;
+    return this.favoritesService.isRecipeSaved(recipe);
   }
 
   addToFavorites(recipe: Recipe): void {
-    this.favoriteRecipes.push(recipe);
-    console.log("favorite added");
-    console.log(this.favoriteRecipes);
+    this.favoritesService.addToFavorites(recipe);
   }
 
   deleteFromFavorites(recipe: Recipe): void {
-    const index = this.favoriteRecipes.findIndex(element => element === recipe);
-    this.favoriteRecipes.splice(index, 1);
-    console.log("favorite deleted");
-    console.log(this.favoriteRecipes);
+    this.favoritesService.deleteFromFavorites(recipe);
   }
 
 }

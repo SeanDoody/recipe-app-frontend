@@ -1,8 +1,4 @@
-<!-- <mat-icon>delete</mat-icon>
-<mat-icon>delete_forever</mat-icon>
-<mat-icon>delete_outline</mat-icon> -->
-
-<!-- <div *ngFor="let recipe of recipeList" class="recipe">
+<div *ngFor="let recipe of recipeList" class="recipe">
     <img src="{{ recipe.imageUrl }}" alt="image">
     <div class="recipe-text">
         <div class="left-side">
@@ -10,8 +6,7 @@
             <a href="{{ recipe.url }}" target="_blank">{{ recipe.source }}</a>
         </div>
         <div class="right-side">
-            <mat-icon *ngIf="!isRecipeSaved(recipe)" (click)="addToFavorites(recipe)">favorite_border</mat-icon>
-            <mat-icon *ngIf="isRecipeSaved(recipe)" (click)="deleteFromFavorites(recipe)">favorite</mat-icon>
+            <mat-icon (click)="deleteFromFavorites(recipe)">delete</mat-icon>
         </div>
     </div>
-</div> -->
+</div>

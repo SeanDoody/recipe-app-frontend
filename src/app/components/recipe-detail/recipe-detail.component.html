@@ -1,0 +1,40 @@
+<h2>{{ currentRecipe.recipeName }}</h2>
+<p><a href="{{ currentRecipe.url }}" target="_blank">{{ currentRecipe.source }}</a></p>
+<img src="{{ currentRecipe.imageUrl }}" alt="image">
+<p>Cuisine Type</p>
+<ul>
+    <li *ngFor="let type of currentRecipe.cuisineType">{{ type }}</li> 
+</ul>
+<br>
+<p>Ingredients</p>
+<ul>
+    <li *ngFor="let ingredient of currentRecipe.ingredients">{{ ingredient }}</li> 
+</ul>
+<br>
+
+<div>
+    <mat-icon *ngIf="!isRecipeSaved(currentRecipe)" (click)="addToFavorites(currentRecipe)">favorite_border</mat-icon>
+    <mat-icon *ngIf="isRecipeSaved(currentRecipe)" (click)="deleteFromFavorites(currentRecipe)">favorite</mat-icon>
+</div>
+
+<!-- <p>Health Labels</p>
+<ul>
+   <li *ngFor="let label of currentRecipe.healthLabels">{{ label }}</li> 
+</ul>
+<br>
+<p>Health Labels - CSV</p>
+<span *ngFor="let label of currentRecipe.healthLabels">{{ label }}, </span> 
+<br> -->
+
+<!-- recipeName: "",
+recipeId: "",
+recipeLink: "",
+source: "",  
+cuisineType: [],
+healthLabels: [],
+imageUrl: "",
+ingredients: [],
+totalTime: 0,
+url: "",
+dishType: [],
+yield: 0 -->

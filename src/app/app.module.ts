@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { EdamamApiService } from './services/edamam-api/edamam-api.service';
 import { FavoritesService } from './services/favorites/favorites.service';
 import { HeaderComponent } from './components/header/header.component';
+import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HeaderComponent } from './components/header/header.component';
     SearchCriteriaComponent,
     RecipeListComponent,
     FavoritesPageComponent,
-    HeaderComponent
+    HeaderComponent,
+    RecipeDetailComponent
   ],
   imports: [
     BrowserModule,

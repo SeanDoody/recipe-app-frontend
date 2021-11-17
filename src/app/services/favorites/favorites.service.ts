@@ -12,9 +12,9 @@ export class FavoritesService {
 
   isRecipeSaved(recipe: Recipe): boolean {
     let recipeSaved: boolean = false;
-    let recipeLink: string = recipe.recipeLink;
+    let recipeId: string = recipe.recipeId;
     for (let savedRecipe of this.favoriteRecipes) {
-      if (savedRecipe.recipeLink === recipeLink) {
+      if (savedRecipe.recipeId === recipeId) {
         recipeSaved = true;
         break;
       }

@@ -19,10 +19,18 @@ export class RecipeListComponent implements OnInit {
   updateRecipeList(apiData: any): void {
     this.recipeList = [];
     let newRecipe: Recipe;
+    let newRecipeLink: string = "";
+    let newRecipeId: string = "";
+
     for (let hit of apiData.hits) {
+
+      newRecipeLink = hit._links.self.href;
+      newRecipeId = newRecipeLink.substring(38, 70);
+
       newRecipe = {
         recipeName: hit.recipe.label,
-        recipeLink: hit._links.self.href,
+        recipeId: newRecipeId,
+        recipeLink: newRecipeLink,
         source: hit.recipe.source,  
         cuisineType: hit.recipe.cuisineType,
         healthLabels: hit.recipe.healthLabels,

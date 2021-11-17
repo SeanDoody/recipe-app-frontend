@@ -3,7 +3,11 @@
     <img src="{{ recipe.imageUrl }}" alt="image">
     <div class="recipe-text">
         <div class="left-side">
-            <h3>{{ recipe.recipeName }}</h3>
+            <h3>
+                <a [routerLink]="['/search', recipe.recipeId]">
+                    {{ recipe.recipeName }}
+                </a>
+            </h3>
             <a href="{{ recipe.url }}" target="_blank">{{ recipe.source }}</a>
         </div>
         <div class="right-side">

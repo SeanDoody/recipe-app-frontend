@@ -1,5 +1,6 @@
 export interface Recipe {
     recipeName: string;     // hits[i].recipe.label
+    recipeId: string;       // hits[i]._links.self.href.substring(38, 70);
     recipeLink: string;     // hits[i]._links.self.href
     source: string;         // hits[i].recipe.source
     cuisineType: string[];  // hits[i].recipe.cuisineType

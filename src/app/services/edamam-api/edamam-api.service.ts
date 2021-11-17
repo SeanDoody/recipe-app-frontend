@@ -10,7 +10,6 @@ export class EdamamApiService {
   appId: string = "e553ac8f";
   appKey: string = "4a65f97aed92762ca9818cfaef595dcf";
   apiUrl: string = "https://api.edamam.com/api/recipes/v2";
-  // individual recipe info: api/recipes/v2/{id}
 
   constructor(private http: HttpClient) { }
 
@@ -33,8 +32,8 @@ export class EdamamApiService {
       params: {
         app_id: this.appId,
         app_key: this.appKey,
-        type: "public",
-        id: recipeId
+        type: "public"
+        // id: recipeId
       }
     })
   }

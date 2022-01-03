@@ -27,5 +27,9 @@
         <option value="vegan">Vegan</option>
         <option value="vegetarian">Vegetarian</option>
     </select>
-    <button (click)="newSearch()">Search</button>
+    <div id="search-flex">
+        <img (click)="newSearch()" [ngClass]="spinWheel ? 'rotate' : ''" id="roulette-wheel" src="assets/images/roulette-wheel.png" alt="search button">
+        <p>Spin the wheel for a random search!</p>
+    </div>
+    
 </form>

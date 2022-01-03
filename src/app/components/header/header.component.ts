@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  showNav: boolean = false;
+
+  toggleNav(): void {
+    this.showNav = !this.showNav;
+  }
+
   constructor() { }
 
   ngOnInit(): void {

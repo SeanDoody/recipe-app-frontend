@@ -1,6 +1,7 @@
 <header>
-    <h1>Recipe Roulette!</h1>
-    <nav>
+    <h1>Recipe  Roulette!</h1>
+    <mat-icon (click)="toggleNav()">menu</mat-icon>
+    <nav *ngIf="showNav">
         <a routerLink="/search">Search</a>
         <a routerLink="/favorites">Favorites</a>
     </nav>

@@ -1,0 +1,58 @@
+.parent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+#recipe-name {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+#recipe-source {
+    font-size: 2rem;
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 1rem;
+    color: black;
+    text-decoration: underline;
+    margin-bottom: 1rem;
+}
+
+#recipe-source a {
+    font-size: 2rem;
+}
+
+img {
+    border-radius: 1rem;
+    width: 80%;
+}
+
+.recipe-icon {
+    bottom: 3.3rem;
+    right: 4.5rem;
+}
+
+.outer {
+    transform: scale(3);
+}
+
+.inner {
+    transform: scale(1.7)
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+li {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    margin-left: 1.5rem;
+}

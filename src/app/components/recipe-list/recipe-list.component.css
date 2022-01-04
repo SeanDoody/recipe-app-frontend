@@ -1,36 +1,54 @@
 .recipe {
     width: 100%;
+    height: 11rem;
     display: flex;
     flex-direction: row;
     padding: 1rem;
 }
 
-.recipe-text {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: space-between;
-    justify-content: center;
+.left-side {
+    position: relative;
+    width: 50%;
 }
 
-.left-side {
-    flex: 9;
+img {
+    height: 100%;
+    margin-right: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+mat-icon {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+}
+
+.circle {
+    transform: scale(2);
+    color: green;
+}
+
+.favorite {
+    transform: scale(1.3);
+    color: red;
 }
 
 .right-side {
-    flex: 1;
+    position: relative;
+    width: 50%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }
 
 h3 {
-    font-size: 0.8rem;
+    font-size: 1.5rem;
 }
-/* 
-a {
-    font-size: 0.5rem;
-} */
 
-img {
-    height: 30%;
-    width: 30%;
-    margin-right: 0.5rem;
+span {
+    font-size: 1rem;
+    color: black;
+    text-decoration: underline;
 }

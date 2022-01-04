@@ -1,18 +1,19 @@
 <app-search-criteria (newSearchEvent)="searchForRecipes($event)"></app-search-criteria>
 <div *ngFor="let recipe of recipeList" class="recipe">
-    <img src="{{ recipe.imageUrl }}" alt="image">
-    <div class="recipe-text">
-        <div class="left-side">
-            <h3>
-                <a [routerLink]="['/search', recipe.recipeId]">
-                    {{ recipe.recipeName }}
-                </a>
-            </h3>
+    <div class="left-side">
+        <img [routerLink]="['/search', recipe.recipeId]" src="{{ recipe.imageUrl }}" alt="image">
+        <mat-icon class="circle">lens</mat-icon>
+        <mat-icon *ngIf="!isRecipeSaved(recipe)" (click)="addToFavorites(recipe)" class="favorite">favorite_border</mat-icon>
+        <mat-icon *ngIf="isRecipeSaved(recipe)" (click)="deleteFromFavorites(recipe)" class="favorite">favorite</mat-icon>
+    </div>
+    <div class="right-side">
+        <h3>
+            <a [routerLink]="['/search', recipe.recipeId]">
+                {{ recipe.recipeName }}
+            </a>
+        </h3>
+        <span>
             <a href="{{ recipe.url }}" target="_blank">{{ recipe.source }}</a>
-        </div>
-        <div class="right-side">
-            <mat-icon *ngIf="!isRecipeSaved(recipe)" (click)="addToFavorites(recipe)">favorite_border</mat-icon>
-            <mat-icon *ngIf="isRecipeSaved(recipe)" (click)="deleteFromFavorites(recipe)">favorite</mat-icon>
-        </div>
+        </span>
     </div>
 </div>

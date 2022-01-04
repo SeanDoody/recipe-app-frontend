@@ -12,8 +12,3 @@ body {
     width: 100vw;
     background-image: url(./assets/images/wood.jpg);
 }
-
-@font-face {
-    font-family: 'Coffee Tin';
-    src: local('Coffee Tin'), url(./assets/fonts/coffee-tin.ttf) format('truetype');
-}

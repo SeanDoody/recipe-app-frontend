@@ -1,5 +1,5 @@
 <form>
-    <h2>Search Criteria</h2>
+    <h2>Recipe Search</h2>
     <label for="keywords">Keywords</label>
     <input [(ngModel)]="keywords" type="text" id="keywords" name="keywords">
     <label for="dish-type">Dish Type</label>
@@ -31,5 +31,4 @@
         <img (click)="newSearch()" [ngClass]="spinWheel ? 'rotate' : ''" id="roulette-wheel" src="assets/images/roulette-wheel.png" alt="search button">
         <p>Spin the wheel for a random search!</p>
     </div>
-    
 </form>

@@ -98,6 +98,14 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@netlify-builder/deploy:deploy",
+          "options": {
+            "outputPath": "dist/recipe-app",
+            "netlifyToken": "",
+            "siteId": "941a1cb6-16f6-47c9-8c11-a68cd41745f9"
+          }
         }
       }
     }

@@ -17,23 +17,30 @@ export class SearchCriteriaComponent implements OnInit {
 
   newSearch(): void {
 
-    this.spinWheel = true;
+    if (this.keywords === "" && this.dishType === [] && this.dietaryRestrictions === []) {
+      
+      alert("At least one criteria must be chosen to search.");
 
-    const newEvent: SearchEvent = {
-      keywords: this.keywords,
-      dishType: this.dishType,
-      dietaryRestrictions: this.dietaryRestrictions
-    };
+    } else {
 
-    setTimeout(() => {
-      this.newSearchEvent.emit(newEvent);
-      console.log('emitted:');
-      console.log(newEvent);
-    }, 1000);
+      this.spinWheel = true;
 
-    setTimeout(() => {
-      this.spinWheel = false;
-    }, 1000);
+      const newEvent: SearchEvent = {
+        keywords: this.keywords,
+        dishType: this.dishType,
+        dietaryRestrictions: this.dietaryRestrictions
+      };
+  
+      setTimeout(() => {
+        this.newSearchEvent.emit(newEvent);
+        console.log('emitted:');
+        console.log(newEvent);
+      }, 1000);
+  
+      setTimeout(() => {
+        this.spinWheel = false;
+      }, 1000);
+    }
 
   }
 

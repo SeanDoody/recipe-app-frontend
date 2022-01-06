@@ -18,6 +18,7 @@ label {
 
 input, select {
     font-size: 1.5rem;
+    height: 2.5rem;
     margin-bottom: 1rem;
     border-radius: 0.7rem;
     border: solid 0.2rem #8b0000;
@@ -35,13 +36,13 @@ option {
     padding-right: 0.5rem;
 }
 
-#dish-type {
+/* #dish-type {
     height: 6.4rem;
 }
 
 #dietary-restrictions {
     height: 4.4rem;
-}
+} */
 
 #search-flex {
     display: flex;

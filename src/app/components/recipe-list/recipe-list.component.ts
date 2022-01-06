@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EdamamApiService } from 'src/app/services/edamam-api/edamam-api.service';
 import { Recipe } from 'src/app/models/recipe';
+import { SearchService } from 'src/app/services/search/search.service';
 import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 
 @Component({
@@ -12,9 +13,13 @@ export class RecipeListComponent implements OnInit {
 
   recipeList: Recipe[] = [];
 
-  constructor(private edamamApiService: EdamamApiService, private favoritesService: FavoritesService ) { }
+  constructor(private edamamApiService: EdamamApiService, 
+    private searchService: SearchService, private favoritesService: FavoritesService ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    console.log("init RecipeListComponent");
+    this.recipeList = this.searchService.getSearchResults();
+  }
 
   updateRecipeList(apiData: any): void {
     this.recipeList = [];
@@ -41,10 +46,15 @@ export class RecipeListComponent implements OnInit {
         dishType: hit.recipe.dishType,
         yield: hit.recipe.yield
       };
+
       this.recipeList.push(newRecipe);
+
     }
+
+    this.searchService.setSearchResults(this.recipeList);
     console.log("recipe list updated");
     console.log(this.recipeList);
+    
   }
 
   searchForRecipes(searchEvent: any): void {

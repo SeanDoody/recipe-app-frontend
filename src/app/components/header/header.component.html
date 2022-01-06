@@ -5,7 +5,7 @@
     </div>
     <mat-icon (click)="toggleNav()">menu</mat-icon>
     <nav *ngIf="showNav">
-        <a routerLink="/search">Search</a>
-        <a routerLink="/favorites">Favorites</a>
+        <a routerLink="/search" (click)="toggleNav()" [ngClass]="{'active' : this.activeRoute === '/search'}">Search</a>
+        <a routerLink="/favorites" (click)="toggleNav()" [ngClass]="{'active' : this.activeRoute === '/favorites'}">Favorites</a>
     </nav>
 </header>

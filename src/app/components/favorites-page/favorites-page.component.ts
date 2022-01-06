@@ -10,18 +10,29 @@ import { Recipe } from 'src/app/models/recipe';
 export class FavoritesPageComponent implements OnInit {
 
   recipeList: Recipe[] = [];
+  noFavorites: boolean = true;
 
   constructor(private favoritesService: FavoritesService) { }
 
   ngOnInit(): void {
     console.log("init FavoritesPageComponent");
     this.recipeList = this.favoritesService.getFavoriteRecipes();
+    if (this.recipeList.length === 0) {
+      this.noFavorites = true;
+    } else {
+      this.noFavorites = false;
+    }
     console.log(this.recipeList);
   }
 
   deleteFromFavorites(recipe: Recipe): void {
     this.favoritesService.deleteFromFavorites(recipe);
     this.recipeList = this.favoritesService.getFavoriteRecipes();
+    if (this.recipeList.length === 0) {
+      this.noFavorites = true;
+    } else {
+      this.noFavorites = false;
+    }
     console.log(this.recipeList);
   }
 

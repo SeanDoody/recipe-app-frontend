@@ -17,7 +17,7 @@ export class SearchCriteriaComponent implements OnInit {
 
   newSearch(): void {
 
-    if (this.keywords === "" && this.dishType === [] && this.dietaryRestrictions === []) {
+    if (this.keywords === "" && this.dishType.length === 0 && this.dietaryRestrictions.length === 0) {
       
       alert("At least one criteria must be chosen to search.");
 

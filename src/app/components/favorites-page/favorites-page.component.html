@@ -1,3 +1,5 @@
+<p *ngIf="noFavorites" id="no-fav-msg">No favorites saved!</p>
+
 <div *ngFor="let recipe of recipeList" class="recipe">
     <div class="recipe-left-side">
         <img [routerLink]="['/search', recipe.recipeId]" src="{{ recipe.imageUrl }}" alt="image" class="recipe-image">

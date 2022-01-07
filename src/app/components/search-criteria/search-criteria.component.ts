@@ -10,16 +10,33 @@ export class SearchCriteriaComponent implements OnInit {
 
   @Output() newSearchEvent = new EventEmitter<SearchEvent>();
 
-  keywords: string = "";
+  keywords: string = '';
   dishType: string[] = [];
   dietaryRestrictions: string[] = [];
+  glutenFree: boolean = false;
+  vegan: boolean = false;
+  vegetarian: boolean = false;
   spinWheel: boolean = false;
 
   newSearch(): void {
 
-    if (this.keywords === "" && this.dishType.length === 0 && this.dietaryRestrictions.length === 0) {
+    this.dietaryRestrictions = [];
+
+    if (this.glutenFree) {
+      this.dietaryRestrictions.push('gluten-free');
+    }
+
+    if (this.vegan) {
+      this.dietaryRestrictions.push('vegan');
+    }
+
+    if (this.vegetarian) {
+      this.dietaryRestrictions.push('vegetarian');
+    }
+
+    if (this.keywords === '' && this.dishType.length === 0 && this.dietaryRestrictions.length === 0) {
       
-      alert("At least one criteria must be chosen to search.");
+      alert('At least one criteria must be chosen to search.');
 
     } else {
 

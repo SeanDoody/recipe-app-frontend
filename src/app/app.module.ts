@@ -13,6 +13,7 @@ import { EdamamApiService } from './services/edamam-api/edamam-api.service';
 import { FavoritesService } from './services/favorites/favorites.service';
 import { HeaderComponent } from './components/header/header.component';
 import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule
   ],
   providers: [
     EdamamApiService,

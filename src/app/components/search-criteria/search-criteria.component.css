@@ -13,20 +13,25 @@ h2 {
 
 label {
     font-size: 1.5rem;
-    margin-bottom: 0.3rem;
 }
 
 input, select {
     font-size: 1.5rem;
-    height: 2.5rem;
-    margin-bottom: 1rem;
     border-radius: 0.7rem;
     border: solid 0.2rem #8b0000;
 }
 
-input {
+#keywords {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+}
+
+#dish-type {
+    height: 2.2rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.7rem;
 }
 
 option {
@@ -36,13 +41,22 @@ option {
     padding-right: 0.5rem;
 }
 
-/* #dish-type {
-    height: 6.4rem;
+#dietary-restrictions {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
-#dietary-restrictions {
-    height: 4.4rem;
-} */
+#dietary-restrictions div {
+    display: flex;
+    align-items: center;
+}
+
+#dietary-restrictions label {
+    font-size: 1.2rem;
+    padding-left: 0.2rem;
+}
 
 #search-flex {
     display: flex;
@@ -69,4 +83,82 @@ option {
 @keyframes rotate{
     from{ transform: rotate(-360deg); }
     to{ transform: rotate(360deg); }
+}
+
+/* tablet styling */
+
+@media only screen and (min-width: 768px) {
+
+    form {
+        padding: 1rem;
+        padding-left: 9rem;
+        padding-right: 9rem;
+    }
+    
+    h2 {
+        font-size: 2.5rem;
+    }
+    
+    label {
+        font-size: 2rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    input, select {
+        font-size: 2rem;
+        height: 3rem;
+    }
+
+    /* #keywords {
+
+    } */
+    
+    #dish-type {
+        height: 10.5rem;
+    }
+    
+    /* option {
+
+    } */
+    
+    #dietary-restrictions {
+        margin-top: 0.5rem;
+        padding-left: 0.5rem;
+    }
+    
+    /* #dietary-restrictions div {
+
+    } */
+    
+    #dietary-restrictions label {
+        padding: 0;
+        font-size: 1.8rem;
+        padding-left: 0.8rem;
+        padding-top: 0.5rem;
+    }
+
+    mat-checkbox {
+        transform: scale(2);
+    }
+    
+    #search-flex {
+        margin-top: 1rem;
+    }
+    
+    #search-flex p {
+        font-size: 2.5rem;
+        width: 45%;
+    }
+    
+    #roulette-wheel {
+        height: 15rem;
+        width: 15rem;
+    }
+
+}
+
+/* desktop styling */
+
+@media only screen and (min-width: 1025px) {
+
 }

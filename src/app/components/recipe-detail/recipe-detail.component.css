@@ -12,13 +12,11 @@
 }
 
 #recipe-source {
-    font-size: 2rem;
     text-align: center;
     width: 100%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    font-size: 1rem;
     color: black;
     text-decoration: underline;
     margin-bottom: 1rem;
@@ -31,10 +29,11 @@
 img {
     border-radius: 1rem;
     width: 80%;
+    box-shadow: 0.5rem 0.5rem 1rem rgb(41, 41, 41);
 }
 
 .recipe-icon {
-    bottom: 3.3rem;
+    bottom: 5rem;
     right: 4.5rem;
 }
 
@@ -55,4 +54,63 @@ li {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
     margin-left: 1.5rem;
+}
+
+/* tablet styling */
+
+@media only screen and (min-width: 768px) {
+
+    .parent {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        padding-left: 3.5rem;
+        padding-right: 3.5rem;
+    }
+    
+    #recipe-name {
+        font-size: 3rem;
+    }
+    
+    #recipe-source {
+        margin-bottom: 2rem;
+    }
+    
+    #recipe-source a {
+        font-size: 3rem;
+    }
+    
+    img {
+        border-radius: 2rem;
+        width: 70%;
+        box-shadow: 1rem 1rem 2rem rgb(41, 41, 41);
+    }
+    
+    .recipe-icon {
+        bottom: 18rem;
+        right: 13.7rem;
+    }
+    
+    .outer {
+        transform: scale(5);
+    }
+    
+    .inner {
+        transform: scale(3);
+    }
+    
+    h3 {
+        font-size: 3rem;
+        margin-top: 1rem;
+    }
+    
+    li {
+        font-size: 2rem;
+    }
+
+}
+
+/* desktop styling */
+
+@media only screen and (min-width: 1025px) {
+
 }

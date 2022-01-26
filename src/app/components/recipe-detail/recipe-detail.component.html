@@ -1,19 +1,24 @@
-<div class="parent">
+<div id="parent">
     <h2 id="recipe-name">{{ currentRecipe.recipeName }}</h2>
     <p id="recipe-source"><a href="{{ currentRecipe.url }}" target="_blank">{{ currentRecipe.source }}</a></p>
-    <img src="{{ currentRecipe.imageUrl }}" alt="image">
-    <div>
-        <mat-icon class="recipe-icon outer">lens</mat-icon>
-        <mat-icon *ngIf="!isRecipeSaved(currentRecipe)" (click)="addToFavorites(currentRecipe)" class="recipe-icon inner">favorite_border</mat-icon>
-        <mat-icon *ngIf="isRecipeSaved(currentRecipe)" (click)="deleteFromFavorites(currentRecipe)" class="recipe-icon inner">favorite</mat-icon>
+    <div id="content-flex">
+        <div id="picture-parent">
+            <img src="{{ currentRecipe.imageUrl }}" alt="image">
+            <div>
+                <mat-icon class="recipe-icon outer">lens</mat-icon>
+                <mat-icon *ngIf="!isRecipeSaved(currentRecipe)" (click)="addToFavorites(currentRecipe)" class="recipe-icon inner">favorite_border</mat-icon>
+                <mat-icon *ngIf="isRecipeSaved(currentRecipe)" (click)="deleteFromFavorites(currentRecipe)" [ngClass]="isRecipeSaved(currentRecipe) ? 'grow-and-shrink' : ''" class="recipe-icon inner">favorite</mat-icon>
+            </div>
+        </div>
+        <div id="ingredients-parent">
+            <h3>Ingredients</h3>
+            <ul>
+                <li *ngFor="let ingredient of currentRecipe.ingredients">
+                    <span>{{ ingredient }}</span>
+                </li> 
+            </ul>
+        </div>
     </div>
-    <br>
-    <h3>Ingredients</h3>
-    <ul>
-        <li *ngFor="let ingredient of currentRecipe.ingredients">
-            <span>{{ ingredient }}</span>
-        </li> 
-    </ul>
 </div>
 
 <!-- <p>Cuisine Type</p>
@@ -24,9 +29,7 @@
 <!-- <p>Health Labels</p>
 <ul>
     <li *ngFor="let label of currentRecipe.healthLabels">{{ label }}</li> 
-</ul>
-<br> -->
+</ul> -->
 
 <!-- <p>Health Labels - CSV</p>
-<span *ngFor="let label of currentRecipe.healthLabels">{{ label }}, </span> 
-<br> -->
+<span *ngFor="let label of currentRecipe.healthLabels">{{ label }}, </span> -->

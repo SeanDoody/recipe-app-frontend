@@ -1,3 +1,5 @@
+/* mobile styling */
+
 header {
     display: flex;
     justify-content: space-between;
@@ -9,6 +11,10 @@ header {
 div {
     display: flex;
     flex-direction: column;
+}
+
+img {
+    display: none;
 }
 
 h1 {
@@ -45,7 +51,6 @@ a {
 }
 
 .active {
-    font-weight: bold;
     text-decoration: underline;
 }
 
@@ -89,6 +94,50 @@ a {
 
 /* desktop styling */
 
-@media only screen and (min-width: 1025px) {
+@media only screen and (min-width: 1024px) {
+
+    header {
+        padding-left: 2rem;
+        padding-right: 2.5rem;
+    }
+
+    div {
+        align-items: center;
+    }
+
+    img {
+        display: block;
+        height: 5rem;
+        width: 5rem;
+        margin-right: 1rem;
+    }
+
+    .infinite-rotate {
+        animation-name: infinite-rotate;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+    
+    @keyframes infinite-rotate {
+        from {transform: rotate(-360deg);}
+        to {transform: rotate(360deg);}
+    }
+
+    mat-icon {
+        display: none;
+    }
+
+    nav {
+        flex-direction: row;
+        position: static;
+        border: 0;
+        padding: 0;
+    }
+
+    a {
+        font-size: 2rem;
+        margin-left: 1rem;
+    }
 
 }

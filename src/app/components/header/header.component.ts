@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, Event, NavigationEnd } from '@angular/router';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -9,20 +10,39 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   showNav: boolean = false;
-  activeRoute: string = '';
+  currentRoute: string = '';
+  innerWidth: number = 0;
 
-  toggleNav(): void {
-    this.activeRoute = this.router.url;
-    this.showNav = !this.showNav;
-    console.log('called toggleNav');
-    console.log('route:')
-    console.log(this.activeRoute);
+  constructor(private router: Router) {
+      this.router.events.subscribe((event: Event) => {
+          if (event instanceof NavigationEnd) {
+              this.currentRoute = event.url;          
+          }
+      });
   }
 
-  constructor(private router: Router) { }
-
   ngOnInit(): void {
-    
+    this.innerWidth = window.innerWidth;
+    if (this.innerWidth >= 1025) {
+      this.showNav = true;
+    }
+    alert('styling in progress - some elements will not be properly sized or positioned');
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.innerWidth = window.innerWidth;
+    if (this.innerWidth >= 1025) {
+      this.showNav = true;
+    } else {
+      this.showNav = false;
+    }
+  }
+
+  toggleNav(): void {
+    if (this.innerWidth < 1025) {
+      this.showNav = !this.showNav;
+    }
   }
 
 }

@@ -13,6 +13,7 @@ html {
     height: 100vh;
     width: 100vw;
     font-size: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -24,6 +25,12 @@ body {
 a {
     text-decoration: none;
     color: black;
+}
+
+#recipe-parent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .recipe {
@@ -38,10 +45,12 @@ a {
 .recipe-left-side {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     position: relative;
     height: 100%;
     width: 45%;
-    margin-right: 0.7rem;
+    padding-right: 0.5rem;
+    padding-left: 1rem;
 }
 
 .recipe-image {
@@ -53,18 +62,36 @@ a {
 
 .recipe-icon {
     position: absolute;
-    bottom: 2rem;
-    right: 0.3rem;
+    bottom: 2.1rem;
+    left: 7rem;
+    cursor: pointer;
+    display: none;
 }
 
 .outer {
-    transform: scale(2);
+    transform: scale(2.5);
     color: green;
 }
 
 .inner {
-    transform: scale(1.3);
+    transform: scale(1.6);
     color: red;
+}
+
+.grow-and-shrink {
+    animation-name: grow-and-shrink;
+    animation-duration: 0.15s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+
+@keyframes grow-and-shrink {
+    from {
+        transform: scale(1.6);
+    }
+    to {
+        transform: scale(2.5);
+    }
 }
 
 .recipe-right-side {
@@ -74,6 +101,8 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-left: 0.5rem;
+    padding-right: 1rem;
 }
 
 .recipe-name {
@@ -86,7 +115,7 @@ a {
 }
 
 .recipe-source {
-    width: 100%;
+    width: 90%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -113,7 +142,7 @@ a {
 
     .recipe-icon {
         bottom: 3.5rem;
-        right: 2.5rem;
+        left: 14rem;
     }
 
     .outer {
@@ -141,6 +170,8 @@ a {
 
 /* desktop styling */
 
-@media only screen and (min-width: 1025px) {
+@media only screen and (min-width: 1024px) {
+
+
 
 }

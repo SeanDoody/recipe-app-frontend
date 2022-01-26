@@ -1,4 +1,23 @@
+/* mobile styling */
+
 #no-fav-msg {
-    font-size: 3rem;
-    margin: 2rem;
+    font-size: 1.5rem;
+    margin: 1rem;
+}
+
+/* tablet styling */
+
+@media only screen and (min-width: 768px) {
+
+    #no-fav-msg {
+        font-size: 2.5rem;
+        margin: 2rem;    
+    }
+
+}
+
+/* desktop styling */
+
+@media only screen and (min-width: 1024px) {
+
 }

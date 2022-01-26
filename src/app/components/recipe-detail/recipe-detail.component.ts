@@ -11,19 +11,19 @@ import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 })
 export class RecipeDetailComponent implements OnInit {
 
-  recipeId: string = "";
+  recipeId: string = '';
   recipeSaved: boolean = false;
   currentRecipe: Recipe = {
-    recipeName: "",
-    recipeId: "",
-    recipeLink: "",
-    source: "",  
+    recipeName: '',
+    recipeId: '',
+    recipeLink: '',
+    source: '',  
     cuisineType: [],
     healthLabels: [],
-    imageUrl: "",
+    imageUrl: '',
     ingredients: [],
     totalTime: 0,
-    url: "",
+    url: '',
     dishType: [],
     yield: 0
   };

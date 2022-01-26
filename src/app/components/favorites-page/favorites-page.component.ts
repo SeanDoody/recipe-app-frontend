@@ -15,7 +15,7 @@ export class FavoritesPageComponent implements OnInit {
   constructor(private favoritesService: FavoritesService) { }
 
   ngOnInit(): void {
-    console.log("init FavoritesPageComponent");
+    console.log('init FavoritesPageComponent');
     this.recipeList = this.favoritesService.getFavoriteRecipes();
     if (this.recipeList.length === 0) {
       this.noFavorites = true;

@@ -17,15 +17,15 @@ export class RecipeListComponent implements OnInit {
     private searchService: SearchService, private favoritesService: FavoritesService ) { }
 
   ngOnInit(): void {
-    console.log("init RecipeListComponent");
+    console.log('init RecipeListComponent');
     this.recipeList = this.searchService.getSearchResults();
   }
 
   updateRecipeList(apiData: any): void {
     this.recipeList = [];
     let newRecipe: Recipe;
-    let newRecipeLink: string = "";
-    let newRecipeId: string = "";
+    let newRecipeLink: string = '';
+    let newRecipeId: string = '';
 
     for (let hit of apiData.hits) {
 
@@ -52,7 +52,7 @@ export class RecipeListComponent implements OnInit {
     }
 
     this.searchService.setSearchResults(this.recipeList);
-    console.log("recipe list updated");
+    console.log('recipe list updated');
     console.log(this.recipeList);
     
   }
@@ -60,7 +60,7 @@ export class RecipeListComponent implements OnInit {
   searchForRecipes(searchEvent: any): void {
     this.edamamApiService.getRecipes(searchEvent).subscribe((data: any) => {
       this.updateRecipeList(data);
-      console.log("API data from new search:");
+      console.log('API data from new search:');
       console.log(data);
     })
   }

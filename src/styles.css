@@ -27,19 +27,12 @@ a {
     color: black;
 }
 
-#recipe-parent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .recipe {
     width: 100%;
     height: 11rem;
     overflow: hidden;
     display: flex;
     flex-direction: row;
-    justify-content: center;
 }
 
 .recipe-left-side {
@@ -48,7 +41,6 @@ a {
     justify-content: flex-end;
     position: relative;
     height: 100%;
-    width: 45%;
     padding-right: 0.5rem;
     padding-left: 1rem;
 }
@@ -62,10 +54,9 @@ a {
 
 .recipe-icon {
     position: absolute;
-    bottom: 2.1rem;
-    left: 7rem;
+    bottom: 1.7rem;
+    left: 7.5rem;
     cursor: pointer;
-    display: none;
 }
 
 .outer {
@@ -74,7 +65,7 @@ a {
 }
 
 .inner {
-    transform: scale(1.6);
+    transform: scale(1.5);
     color: red;
 }
 
@@ -87,7 +78,7 @@ a {
 
 @keyframes grow-and-shrink {
     from {
-        transform: scale(1.6);
+        transform: scale(1);
     }
     to {
         transform: scale(2.5);
@@ -96,11 +87,10 @@ a {
 
 .recipe-right-side {
     height: 100%;
-    width: 45%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     padding-left: 0.5rem;
     padding-right: 1rem;
 }
@@ -115,12 +105,7 @@ a {
 }
 
 .recipe-source {
-    width: 90%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-size: 1rem;
-    text-decoration: underline;
+    display: none;
 }
 
 /* tablet styling */
@@ -132,8 +117,8 @@ a {
     }
 
     .recipe-left-side {
-        width: 35%;
-        margin-right: 1.5rem;
+        padding-right: 1.5rem;
+        padding-left: 3rem;
     }
 
     .recipe-image {
@@ -142,19 +127,29 @@ a {
 
     .recipe-icon {
         bottom: 3.5rem;
-        left: 14rem;
+        left: 15.5rem;
     }
 
     .outer {
-        transform: scale(4);
+        transform: scale(4.5);
     }
 
     .inner {
-        transform: scale(2.6);
+        transform: scale(2.7);
     }
-
+    
+    @keyframes grow-and-shrink {
+        from {
+            transform: scale(2.6);
+        }
+        to {
+            transform: scale(4);
+        }
+    }
+    
     .recipe-right-side {
-        width: 50%;
+        padding-left: 1.5rem;
+        padding-right: 3rem;
     }
 
     .recipe-name {
@@ -163,7 +158,12 @@ a {
     }
 
     .recipe-source {
+        display: block;
         font-size: 2rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        text-decoration: underline;
     }
 
 }

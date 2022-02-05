@@ -1,3 +1,5 @@
+/* mobile styling */
+
 #parent {
     display: flex;
     flex-direction: column;
@@ -29,6 +31,7 @@
 
 #picture-parent {
     width: 100%;
+    position: relative;
     display: flex;
     justify-content: center;
     margin-bottom: 1rem;
@@ -40,17 +43,19 @@ img {
     box-shadow: 0.5rem 0.5rem 1rem rgb(41, 41, 41);
 }
 
-.recipe-icon {
-    bottom: 13rem;
-    right: 6rem;
+.favorite-icon {
+    position: absolute;
+    bottom: 2.2rem;
+    right: 5.5rem;
+    cursor: pointer;
 }
 
 .outer {
-    transform: scale(3);
+    transform: scale(3.5);
 }
 
 .inner {
-    transform: scale(1.7)
+    transform: scale(2.1)
 }
 
 #ingredients-parent {
@@ -99,9 +104,9 @@ li {
         box-shadow: 1rem 1rem 2rem rgb(41, 41, 41);
     }
     
-    .recipe-icon {
-        bottom: 29rem;
-        right: 14rem;
+    .favorite-icon {
+        bottom: 3.6rem;
+        right: 9rem;
     }
     
     .outer {
@@ -153,11 +158,9 @@ li {
         margin-top: 2rem;
     }
 
-    .recipe-icon {
-        display: none;
-        right: 0;
-        bottom: 3rem;
-        left: 30rem;
+    .favorite-icon {
+        right: 3.5rem;
+        bottom: 3.6rem;
     }
 
     #ingredients-parent {

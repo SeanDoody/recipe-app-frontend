@@ -1,18 +1,20 @@
 <p *ngIf="noFavorites" id="no-fav-msg">No favorites saved!</p>
-<div *ngFor="let recipe of recipeList" class="recipe">
-    <div class="recipe-left-side">
-        <img [routerLink]="['/search', recipe.recipeId]" src="{{ recipe.imageUrl }}" alt="image" class="recipe-image">
-        <mat-icon class="recipe-icon outer">lens</mat-icon>
-        <mat-icon (click)="deleteFromFavorites(recipe)" class="recipe-icon inner">delete</mat-icon>
-    </div>
-    <div class="recipe-right-side">
-        <h3 class="recipe-name">
-            <a [routerLink]="['/search', recipe.recipeId]">
-                {{ recipe.recipeName }}
-            </a>
-        </h3>
-        <p class="recipe-source">
-            <a href="{{ recipe.url }}" target="_blank">{{ recipe.source }}</a>
-        </p>
+<div id="recipe-parent">
+    <div *ngFor="let recipe of recipeList" class="recipe">
+        <div class="recipe-left-side">
+            <img [routerLink]="['/search', recipe.recipeId]" src="{{ recipe.imageUrl }}" alt="image" class="recipe-image">
+            <mat-icon class="recipe-icon outer">lens</mat-icon>
+            <mat-icon (click)="deleteFromFavorites(recipe)" class="recipe-icon inner">delete</mat-icon>
+        </div>
+        <div class="recipe-right-side">
+            <h3 class="recipe-name">
+                <a [routerLink]="['/search', recipe.recipeId]">
+                    {{ recipe.recipeName }}
+                </a>
+            </h3>
+            <p class="recipe-source">
+                <a href="{{ recipe.url }}" target="_blank">{{ recipe.source }}</a>
+            </p>
+        </div>
     </div>
 </div>

@@ -26,7 +26,6 @@ export class HeaderComponent implements OnInit {
     if (this.innerWidth >= 1025) {
       this.showNav = true;
     }
-    alert('styling in progress - some elements will not be properly sized or positioned');
   }
 
   @HostListener('window:resize', ['$event'])

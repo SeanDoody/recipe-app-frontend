@@ -1,12 +1,12 @@
-<p *ngIf="noFavorites" id="no-fav-msg">No favorites saved!</p>
+<p *ngIf="noFavorites" id="no-fav-msg">No favorites saved! Click <a routerLink="/search">here</a> to search for recipes.</p>
 <div id="recipe-parent">
     <div *ngFor="let recipe of recipeList" class="recipe">
-        <div class="recipe-left-side">
+        <div class="recipe-image-parent">
             <img [routerLink]="['/search', recipe.recipeId]" src="{{ recipe.imageUrl }}" alt="image" class="recipe-image">
             <mat-icon class="recipe-icon outer">lens</mat-icon>
             <mat-icon (click)="deleteFromFavorites(recipe)" class="recipe-icon inner">delete</mat-icon>
         </div>
-        <div class="recipe-right-side">
+        <div class="recipe-text-parent">
             <h3 class="recipe-name">
                 <a [routerLink]="['/search', recipe.recipeId]">
                     {{ recipe.recipeName }}

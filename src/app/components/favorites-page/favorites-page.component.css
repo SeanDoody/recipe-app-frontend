@@ -5,6 +5,10 @@
     margin: 1rem;
 }
 
+#no-fav-msg a {
+    text-decoration: underline;
+}
+
 /* tablet styling */
 
 @media only screen and (min-width: 768px) {

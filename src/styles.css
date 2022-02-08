@@ -29,6 +29,7 @@ a {
 }
 
 #recipe-parent {
+    overflow: hidden;
     padding-bottom: 1rem;
 }
 

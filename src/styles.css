@@ -13,7 +13,6 @@ html {
     height: 100%;
     width: 100%;
     font-size: 100%;
-    overflow-x: hidden;
     background-image: url(./assets/images/wood.jpg);
     background-attachment: fixed;
 }
@@ -29,6 +28,8 @@ a {
 }
 
 #recipe-parent {
+    width: 100%;
+    overflow-x: hidden;
     padding-bottom: 1rem;
 }
 
@@ -186,7 +187,6 @@ a {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        width: 100%;
     }
 
     #recipe-parent * {

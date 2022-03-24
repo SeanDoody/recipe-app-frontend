@@ -84,7 +84,12 @@ mat-checkbox {
     transform: scale(1.5);
 }
 
-::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-accent .mat-pseudo-checkbox-checked, .mat-accent .mat-pseudo-checkbox-indeterminate, .mat-pseudo-checkbox-checked, .mat-pseudo-checkbox-indeterminate {
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-accent .mat-pseudo-checkbox-checked,
+.mat-accent .mat-pseudo-checkbox-indeterminate,
+.mat-pseudo-checkbox-checked,
+.mat-pseudo-checkbox-indeterminate {
     background-color: green !important;
 }
 
@@ -114,14 +119,17 @@ mat-checkbox {
 }
 
 @keyframes rotate {
-    from {transform: rotate(-360deg);}
-    to {transform: rotate(360deg);}
+    from {
+        transform: rotate(-360deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* tablet styling */
 
 @media only screen and (min-width: 768px) {
-
     h2 {
         font-size: 2.5rem;
         margin-top: 1rem;
@@ -131,13 +139,14 @@ mat-checkbox {
         padding-left: 15%;
         padding-right: 15%;
     }
-    
+
     label {
         font-size: 2rem;
         margin-bottom: 0.3rem;
     }
-    
-    input, select {
+
+    input,
+    select {
         font-size: 2rem;
         height: 3rem;
     }
@@ -150,11 +159,11 @@ mat-checkbox {
     #dish-type-parent {
         height: 10.5rem;
     }
-    
+
     #dish-type {
         font-size: 2rem;
     }
-    
+
     #dietary-restrictions {
         flex-direction: row;
         justify-content: space-between;
@@ -166,7 +175,7 @@ mat-checkbox {
     #dietary-restrictions div {
         margin-top: 0;
     }
-    
+
     #dietary-restrictions label {
         padding: 0;
         font-size: 2rem;
@@ -177,28 +186,26 @@ mat-checkbox {
     mat-checkbox {
         transform: scale(2);
     }
-    
+
     #wheel-flex {
         padding-left: 20%;
         padding-right: 20%;
     }
-    
+
     #wheel-flex p {
         font-size: 2.5rem;
         width: 45%;
     }
-    
+
     #roulette-wheel {
         height: 15rem;
         width: 15rem;
     }
-
 }
 
 /* desktop styling */
 
 @media only screen and (min-width: 1024px) {
-
     h2 {
         margin-bottom: 0;
     }
@@ -274,5 +281,4 @@ mat-checkbox {
         width: 100%;
         margin-bottom: 2rem;
     }
-
 }

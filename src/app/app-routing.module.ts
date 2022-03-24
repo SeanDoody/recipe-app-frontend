@@ -5,15 +5,15 @@ import { RecipeListComponent } from './components/recipe-list/recipe-list.compon
 import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
 
 const routes: Routes = [
-  { path: 'search', component: RecipeListComponent },
-  { path: 'search/:recipeId', component: RecipeDetailComponent },
-  { path: 'favorites', component: FavoritesPageComponent },
-  { path: '', redirectTo: 'search', pathMatch: 'full' },
-  { path: '**', redirectTo: 'search' }
+    { path: 'search', component: RecipeListComponent },
+    { path: 'search/:recipeId', component: RecipeDetailComponent },
+    { path: 'favorites', component: FavoritesPageComponent },
+    { path: '', redirectTo: 'search', pathMatch: 'full' },
+    { path: '**', redirectTo: 'search' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

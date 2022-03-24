@@ -3,7 +3,8 @@
 /* mobile styling */
 
 * {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -123,7 +124,6 @@ a {
 /* tablet styling */
 
 @media only screen and (min-width: 768px) {
-
     #recipe-parent {
         padding-bottom: 2rem;
     }
@@ -153,7 +153,7 @@ a {
     .inner {
         transform: scale(2.7);
     }
-    
+
     @keyframes grow-and-shrink {
         from {
             transform: scale(2.7);
@@ -162,7 +162,7 @@ a {
             transform: scale(4.5);
         }
     }
-    
+
     .recipe-text-parent {
         padding-left: 1.5rem;
         padding-right: 3rem;
@@ -181,13 +181,11 @@ a {
         text-overflow: ellipsis;
         text-decoration: underline;
     }
-
 }
 
 /* desktop styling */
 
 @media only screen and (min-width: 1024px) {
-
     #recipe-parent {
         display: flex;
         flex-wrap: wrap;
@@ -205,17 +203,17 @@ a {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .recipe-image-parent {
         height: auto;
         width: auto;
     }
-    
+
     .recipe-icon {
         bottom: 3.5rem;
         left: 13rem;
     }
-    
+
     .outer {
         transform: scale(3.5);
     }
@@ -232,22 +230,21 @@ a {
             transform: scale(3.5);
         }
     }
-    
+
     .recipe-text-parent {
         justify-content: flex-start;
         align-items: center;
         height: auto;
         width: auto;
     }
-    
+
     .recipe-name {
         font-size: 1.5rem;
         text-align: center;
         -webkit-line-clamp: 3;
     }
-    
+
     .recipe-source {
         font-size: 1rem;
     }
-
 }

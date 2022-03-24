@@ -2,43 +2,43 @@ import { Injectable } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class FavoritesService {
-  
-  favoriteRecipes: Recipe[] = [];
 
-  constructor() { }
+    favoriteRecipes: Recipe[] = [];
 
-  isRecipeSaved(recipe: Recipe): boolean {
-    let recipeSaved: boolean = false;
-    let recipeId: string = recipe.recipeId;
-    for (let savedRecipe of this.favoriteRecipes) {
-      if (savedRecipe.recipeId === recipeId) {
-        recipeSaved = true;
-        break;
-      }
+    constructor() { }
+
+    isRecipeSaved(recipe: Recipe): boolean {
+        let recipeSaved: boolean = false;
+        let recipeId: string = recipe.recipeId;
+        for (let savedRecipe of this.favoriteRecipes) {
+            if (savedRecipe.recipeId === recipeId) {
+                recipeSaved = true;
+                break;
+            }
+        }
+        return recipeSaved;
     }
-    return recipeSaved;
-  }
 
-  addToFavorites(recipe: Recipe): void {
-    this.favoriteRecipes.push(recipe);
-    console.log("favorite added");
-    console.log(this.favoriteRecipes);
-  }
+    addToFavorites(recipe: Recipe): void {
+        this.favoriteRecipes.push(recipe);
+        console.log("favorite added");
+        console.log(this.favoriteRecipes);
+    }
 
-  deleteFromFavorites(recipe: Recipe): void {
-    const index = this.favoriteRecipes.findIndex(element => element === recipe);
-    this.favoriteRecipes.splice(index, 1);
-    console.log("favorite deleted");
-    console.log(this.favoriteRecipes);
-  }
+    deleteFromFavorites(recipe: Recipe): void {
+        const index = this.favoriteRecipes.findIndex(element => element === recipe);
+        this.favoriteRecipes.splice(index, 1);
+        console.log("favorite deleted");
+        console.log(this.favoriteRecipes);
+    }
 
-  getFavoriteRecipes(): Recipe[] {
-    console.log("favorites from service");
-    console.log(this.favoriteRecipes);
-    return this.favoriteRecipes;  
-  }
+    getFavoriteRecipes(): Recipe[] {
+        console.log("favorites from service");
+        console.log(this.favoriteRecipes);
+        return this.favoriteRecipes;
+    }
 
 }

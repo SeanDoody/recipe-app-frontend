@@ -7,18 +7,18 @@ import { SearchEvent } from 'src/app/models/search-event';
 })
 export class EdamamApiService {
 
-    appId: string = "e553ac8f";
-    appKey: string = "4a65f97aed92762ca9818cfaef595dcf";
-    apiUrl: string = "https://api.edamam.com/api/recipes/v2";
+    appId: string = 'e553ac8f';
+    appKey: string = '4a65f97aed92762ca9818cfaef595dcf';
+    edamamUrl: string = 'https://api.edamam.com/api/recipes/v2';
 
     constructor(private http: HttpClient) { }
 
     getRecipes(searchEvent: SearchEvent): any {
-        return this.http.get(this.apiUrl, {
+        return this.http.get(this.edamamUrl, {
             params: {
                 app_id: this.appId,
                 app_key: this.appKey,
-                type: "public",
+                type: 'public',
                 random: true,
                 q: searchEvent.keywords,
                 dishType: searchEvent.dishType,
@@ -27,12 +27,12 @@ export class EdamamApiService {
         })
     }
 
-    getRecipeById(recipeId: string): any {
-        return this.http.get(`${this.apiUrl}/${recipeId}`, {
+    getRecipeByUri(recipeUri: string): any {
+        return this.http.get(`${this.edamamUrl}/${recipeUri}`, {
             params: {
                 app_id: this.appId,
                 app_key: this.appKey,
-                type: "public"
+                type: 'public'
                 // id: recipeId
             }
         })

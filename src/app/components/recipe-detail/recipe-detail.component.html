@@ -1,16 +1,31 @@
 <div id="parent">
-    <h2 id="recipe-name">{{ currentRecipe.recipeName }}</h2>
-    <p id="recipe-source"><a href="{{ currentRecipe.url }}" target="_blank">{{ currentRecipe.source }}</a></p>
+    <h2 id="recipe-name">{{ currentRecipe.name }}</h2>
+    <p id="recipe-source">
+        <a href="{{ currentRecipe.sourceUrl }}" target="_blank">{{
+            currentRecipe.sourceName
+        }}</a>
+    </p>
     <div id="content-flex">
         <div id="picture-parent">
-            <img src="{{ currentRecipe.imageUrl }}" alt="image">
+            <img src="{{ currentRecipe.imageUrl }}" alt="image" />
             <div>
                 <mat-icon class="favorite-icon outer">lens</mat-icon>
-                <mat-icon *ngIf="!isRecipeSaved(currentRecipe)" (click)="addToFavorites(currentRecipe)"
-                    class="favorite-icon inner">favorite_border</mat-icon>
-                <mat-icon *ngIf="isRecipeSaved(currentRecipe)" (click)="deleteFromFavorites(currentRecipe)"
-                    [ngClass]="isRecipeSaved(currentRecipe) ? 'grow-and-shrink' : ''" class="favorite-icon inner">
-                    favorite</mat-icon>
+                <mat-icon
+                    *ngIf="!isRecipeSaved(currentRecipe)"
+                    (click)="addToFavorites(currentRecipe)"
+                    class="favorite-icon inner"
+                    >favorite_border</mat-icon
+                >
+                <mat-icon
+                    *ngIf="isRecipeSaved(currentRecipe)"
+                    (click)="deleteFromFavorites(currentRecipe)"
+                    [ngClass]="
+                        isRecipeSaved(currentRecipe) ? 'grow-and-shrink' : ''
+                    "
+                    class="favorite-icon inner"
+                >
+                    favorite</mat-icon
+                >
             </div>
         </div>
         <div id="ingredients-parent">

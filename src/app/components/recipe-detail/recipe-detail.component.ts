@@ -11,19 +11,19 @@ import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 })
 export class RecipeDetailComponent implements OnInit {
 
-    recipeId: string = '';
+    apiUri: string = '';
     recipeSaved: boolean = false;
     currentRecipe: Recipe = {
-        recipeName: '',
-        recipeId: '',
-        recipeLink: '',
-        source: '',
+        name: '',
+        apiUri: '',
+        apiUrl: '',
+        sourceName: '',
+        sourceUrl: '',
+        imageUrl: '',
         cuisineType: [],
         healthLabels: [],
-        imageUrl: '',
         ingredients: [],
         totalTime: 0,
-        url: '',
         dishType: [],
         yield: 0
     };
@@ -31,28 +31,26 @@ export class RecipeDetailComponent implements OnInit {
     constructor(private edamamApiService: EdamamApiService, private favoritesService: FavoritesService, private route: ActivatedRoute) { }
 
     ngOnInit(): void {
-        this.recipeId = this.route.snapshot.params.recipeId;
+        this.apiUri = this.route.snapshot.params.apiUri;
         this.getRecipeInfo();
     }
 
     getRecipeInfo(): void {
-        this.edamamApiService.getRecipeById(this.recipeId).subscribe((data: any) => {
-            console.log(data);
+        this.edamamApiService.getRecipeByUri(this.apiUri).subscribe((data: any) => {
             this.currentRecipe = {
-                recipeName: data.recipe.label,
-                recipeId: this.recipeId,
-                recipeLink: data._links.self.href,
-                source: data.recipe.source,
+                name: data.recipe.label,
+                apiUri: this.apiUri,
+                apiUrl: data._links.self.href,
+                sourceName: data.recipe.source,
+                sourceUrl: data.recipe.url,
+                imageUrl: data.recipe.image,
                 cuisineType: data.recipe.cuisineType,
                 healthLabels: data.recipe.healthLabels,
-                imageUrl: data.recipe.image,
                 ingredients: data.recipe.ingredientLines,
                 totalTime: data.recipe.totalTime,
-                url: data.recipe.url,
                 dishType: data.recipe.dishType,
                 yield: data.recipe.yield
             };
-            console.log(this.currentRecipe);
         })
     }
 

@@ -2,7 +2,7 @@
 <div id="recipe-parent">
     <div *ngFor="let recipe of recipeList" class="recipe">
         <div class="recipe-image-parent">
-            <img [routerLink]="['/search', recipe.recipeId]" src="{{ recipe.imageUrl }}" alt="image"
+            <img [routerLink]="['/search', recipe.apiUri]" src="{{ recipe.imageUrl }}" alt="image"
                 class="recipe-image">
             <mat-icon class="recipe-icon outer">lens</mat-icon>
             <mat-icon *ngIf="!isRecipeSaved(recipe)" (click)="addToFavorites(recipe)" class="recipe-icon inner">
@@ -12,12 +12,12 @@
         </div>
         <div class="recipe-text-parent">
             <h3 class="recipe-name">
-                <a [routerLink]="['/search', recipe.recipeId]">
-                    {{ recipe.recipeName }}
+                <a [routerLink]="['/search', recipe.apiUri]">
+                    {{ recipe.name }}
                 </a>
             </h3>
             <p class="recipe-source">
-                <a href="{{ recipe.url }}" target="_blank">{{ recipe.source }}</a>
+                <a href="{{ recipe.sourceUrl }}" target="_blank">{{ recipe.sourceName }}</a>
             </p>
         </div>
     </div>

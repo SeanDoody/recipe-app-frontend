@@ -12,6 +12,7 @@ import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 export class RecipeDetailComponent implements OnInit {
 
     apiUri: string = '';
+    favoriteUris: string[] = [];
     recipeSaved: boolean = false;
     currentRecipe: Recipe = {
         name: '',
@@ -23,8 +24,8 @@ export class RecipeDetailComponent implements OnInit {
         cuisineType: [],
         healthLabels: [],
         ingredients: [],
-        totalTime: 0,
         dishType: [],
+        totalTime: 0,
         yield: 0
     };
 
@@ -37,33 +38,56 @@ export class RecipeDetailComponent implements OnInit {
 
     getRecipeInfo(): void {
         this.edamamApiService.getRecipeByUri(this.apiUri).subscribe((data: any) => {
-            this.currentRecipe = {
-                name: data.recipe.label,
-                apiUri: this.apiUri,
-                apiUrl: data._links.self.href,
-                sourceName: data.recipe.source,
-                sourceUrl: data.recipe.url,
-                imageUrl: data.recipe.image,
-                cuisineType: data.recipe.cuisineType,
-                healthLabels: data.recipe.healthLabels,
-                ingredients: data.recipe.ingredientLines,
-                totalTime: data.recipe.totalTime,
-                dishType: data.recipe.dishType,
-                yield: data.recipe.yield
-            };
-        })
+            this.currentRecipe = new Recipe('edamamApi', data);
+            // this.currentRecipe = {
+            //     name: data.recipe.label,
+            //     apiUri: this.apiUri,
+            //     apiUrl: data._links.self.href,
+            //     sourceName: data.recipe.source,
+            //     sourceUrl: data.recipe.url,
+            //     imageUrl: data.recipe.image,
+            //     cuisineType: data.recipe.cuisineType,
+            //     healthLabels: data.recipe.healthLabels,
+            //     ingredients: data.recipe.ingredientLines,
+            //     dishType: data.recipe.dishType,
+            //     totalTime: data.recipe.totalTime,
+            //     yield: data.recipe.yield
+            // };
+        });
     }
 
-    isRecipeSaved(recipe: Recipe): boolean {
-        return this.favoritesService.isRecipeSaved(recipe);
+    updateFavoriteUris(): void {
+        this.favoritesService.getFavoriteRecipes().subscribe((data: any) => {
+            this.favoriteUris = [];
+            for (let record of data) {
+                this.favoriteUris.push(record.api_uri);
+            }
+        });
+    }
+
+    isRecipeSaved(apiUri: string): boolean {
+        let recipeSaved: boolean = false;
+        for (let favoriteUri of this.favoriteUris) {
+            if (favoriteUri === apiUri) {
+                recipeSaved = true;
+                break;
+            }
+        }
+        return recipeSaved;
     }
 
     addToFavorites(recipe: Recipe): void {
-        this.favoritesService.addToFavorites(recipe);
+        this.favoritesService.addToFavorites(recipe).subscribe((data: any) => {
+            console.log(`${recipe.apiUri} added to favorites`);
+        });
+        this.updateFavoriteUris();
     }
 
-    deleteFromFavorites(recipe: Recipe): void {
-        this.favoritesService.deleteFromFavorites(recipe);
+    deleteFromFavorites(apiUri: string): void {
+        this.favoritesService.deleteFromFavorites(apiUri).subscribe(() => {
+            console.log(`${apiUri} deleted from favorites`);
+        });
+        this.updateFavoriteUris();
     }
 
 }

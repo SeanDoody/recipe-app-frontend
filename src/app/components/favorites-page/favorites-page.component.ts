@@ -9,28 +9,34 @@ import { Recipe } from 'src/app/models/recipe';
 })
 export class FavoritesPageComponent implements OnInit {
 
-    recipeList: Recipe[] = [];
+    favoriteRecipes: Recipe[] = [];
     noFavorites: boolean = true;
 
     constructor(private favoritesService: FavoritesService) { }
 
     ngOnInit(): void {
-        this.recipeList = this.favoritesService.getFavoriteRecipes();
-        if (this.recipeList.length === 0) {
-            this.noFavorites = true;
-        } else {
-            this.noFavorites = false;
-        }
+        this.updateFavoritesList();
     }
 
-    deleteFromFavorites(recipe: Recipe): void {
-        this.favoritesService.deleteFromFavorites(recipe);
-        this.recipeList = this.favoritesService.getFavoriteRecipes();
-        if (this.recipeList.length === 0) {
-            this.noFavorites = true;
-        } else {
-            this.noFavorites = false;
-        }
+    updateFavoritesList(): void {
+        this.favoritesService.getFavoriteRecipes().subscribe((data: any) => {
+            this.favoriteRecipes = [];
+            for (let record of data) {
+                this.favoriteRecipes.push(new Recipe('favorites', record));
+            }
+            if (this.favoriteRecipes.length === 0) {
+                this.noFavorites = true;
+            } else {
+                this.noFavorites = false;
+            }
+        });
+    }
+
+    deleteFromFavorites(apiUri: string): void {
+        this.favoritesService.deleteFromFavorites(apiUri).subscribe(() => {
+            console.log(`${apiUri} deleted from favorites`);
+        });
+        this.updateFavoritesList();
     }
 
 }

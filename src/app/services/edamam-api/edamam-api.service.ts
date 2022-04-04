@@ -24,7 +24,7 @@ export class EdamamApiService {
                 dishType: searchEvent.dishType,
                 health: searchEvent.dietaryRestrictions
             }
-        })
+        });
     }
 
     getRecipeByUri(recipeUri: string): any {
@@ -33,9 +33,8 @@ export class EdamamApiService {
                 app_id: this.appId,
                 app_key: this.appKey,
                 type: 'public'
-                // id: recipeId
             }
-        })
+        });
     }
 
 }

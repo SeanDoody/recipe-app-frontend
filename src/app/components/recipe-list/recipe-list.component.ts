@@ -12,37 +12,20 @@ import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 export class RecipeListComponent implements OnInit {
 
     recipeList: Recipe[] = [];
+    favoriteUris: string[] = [];
 
-    constructor(private edamamApiService: EdamamApiService,
-        private searchService: SearchService, private favoritesService: FavoritesService) { }
+    constructor(private edamamApiService: EdamamApiService, private searchService: SearchService,
+        private favoritesService: FavoritesService) { }
 
     ngOnInit(): void {
+        this.updateFavoriteUris();
         this.recipeList = this.searchService.getSearchResults();
     }
 
     updateRecipeList(apiData: any): void {
         this.recipeList = [];
-        let newRecipe: Recipe;
-        let newRecipeApiUrl: string = '';
-        let newRecipeApiUri: string = '';
         for (let hit of apiData.hits) {
-            newRecipeApiUrl = hit._links.self.href;
-            newRecipeApiUri = newRecipeApiUrl.substring(38, 70);
-            newRecipe = {
-                name: hit.recipe.label,
-                apiUri: newRecipeApiUri,
-                apiUrl: newRecipeApiUrl,
-                sourceName: hit.recipe.source,
-                sourceUrl: hit.recipe.url,
-                imageUrl: hit.recipe.image,
-                cuisineType: hit.recipe.cuisineType,
-                healthLabels: hit.recipe.healthLabels,
-                ingredients: hit.recipe.ingredientLines,
-                totalTime: hit.recipe.totalTime,
-                dishType: hit.recipe.dishType,
-                yield: hit.recipe.yield
-            };
-            this.recipeList.push(newRecipe);
+            this.recipeList.push(new Recipe('edamamApi', hit));
         }
         this.searchService.setSearchResults(this.recipeList);
     }
@@ -50,19 +33,41 @@ export class RecipeListComponent implements OnInit {
     searchForRecipes(searchEvent: any): void {
         this.edamamApiService.getRecipes(searchEvent).subscribe((data: any) => {
             this.updateRecipeList(data);
-        })
+        });
     }
 
-    isRecipeSaved(recipe: Recipe): boolean {
-        return this.favoritesService.isRecipeSaved(recipe);
+    updateFavoriteUris(): void {
+        this.favoritesService.getFavoriteRecipes().subscribe((data: any) => {
+            this.favoriteUris = [];
+            for (let record of data) {
+                this.favoriteUris.push(record.api_uri);
+            }
+        });
+    }
+
+    isRecipeSaved(apiUri: string): boolean {
+        let recipeSaved: boolean = false;
+        for (let favoriteUri of this.favoriteUris) {
+            if (favoriteUri === apiUri) {
+                recipeSaved = true;
+                break;
+            }
+        }
+        return recipeSaved;
     }
 
     addToFavorites(recipe: Recipe): void {
-        this.favoritesService.addToFavorites(recipe);
+        this.favoritesService.addToFavorites(recipe).subscribe((data: any) => {
+            console.log(`${recipe.apiUri} added to favorites`);
+        });
+        this.updateFavoriteUris();
     }
 
-    deleteFromFavorites(recipe: Recipe): void {
-        this.favoritesService.deleteFromFavorites(recipe);
+    deleteFromFavorites(apiUri: string): void {
+        this.favoritesService.deleteFromFavorites(apiUri).subscribe(() => {
+            console.log(`${apiUri} deleted from favorites`);
+        });
+        this.updateFavoriteUris();
     }
 
 }

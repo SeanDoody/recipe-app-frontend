@@ -13,19 +13,21 @@ export class HeaderComponent implements OnInit {
     currentRoute: string = '';
     innerWidth: number = 0;
 
-    constructor(private router: Router) {
-        this.router.events.subscribe((event: Event) => {
-            if (event instanceof NavigationEnd) {
-                this.currentRoute = event.url;
-            }
-        });
-    }
+    constructor(private router: Router) { }
 
     ngOnInit(): void {
         this.innerWidth = window.innerWidth;
         if (this.innerWidth >= 1025) {
             this.showNav = true;
         }
+        this.router.events.subscribe((event: Event) => {
+            if (event instanceof NavigationEnd) {
+                this.currentRoute = event.url;
+                if (this.currentRoute = '/') {
+                    this.currentRoute = '/search';
+                }
+            }
+        });
     }
 
     @HostListener('window:resize', ['$event'])

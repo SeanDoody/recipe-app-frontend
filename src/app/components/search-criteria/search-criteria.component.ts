@@ -45,8 +45,6 @@ export class SearchCriteriaComponent implements OnInit {
             };
             setTimeout(() => {
                 this.newSearchEvent.emit(newEvent);
-                console.log('emitted:');
-                console.log(newEvent);
             }, 1000);
             setTimeout(() => {
                 this.spinWheel = false;

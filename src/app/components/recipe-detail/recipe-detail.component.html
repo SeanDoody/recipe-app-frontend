@@ -11,16 +11,16 @@
             <div>
                 <mat-icon class="favorite-icon outer">lens</mat-icon>
                 <mat-icon
-                    *ngIf="!isRecipeSaved(currentRecipe)"
+                    *ngIf="!isRecipeSaved(currentRecipe.apiUri)"
                     (click)="addToFavorites(currentRecipe)"
                     class="favorite-icon inner"
                     >favorite_border</mat-icon
                 >
                 <mat-icon
-                    *ngIf="isRecipeSaved(currentRecipe)"
-                    (click)="deleteFromFavorites(currentRecipe)"
+                    *ngIf="isRecipeSaved(currentRecipe.apiUri)"
+                    (click)="deleteFromFavorites(currentRecipe.apiUri)"
                     [ngClass]="
-                        isRecipeSaved(currentRecipe) ? 'grow-and-shrink' : ''
+                        isRecipeSaved(currentRecipe.apiUri) ? 'grow-and-shrink' : ''
                     "
                     class="favorite-icon inner"
                 >
@@ -38,16 +38,3 @@
         </div>
     </div>
 </div>
-
-<!-- <p>Cuisine Type</p>
-<ul>
-    <li *ngFor="let type of currentRecipe.cuisineType">{{ type }}</li> 
-</ul> -->
-
-<!-- <p>Health Labels</p>
-<ul>
-    <li *ngFor="let label of currentRecipe.healthLabels">{{ label }}</li> 
-</ul> -->
-
-<!-- <p>Health Labels - CSV</p>
-<span *ngFor="let label of currentRecipe.healthLabels">{{ label }}, </span> -->

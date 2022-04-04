@@ -15,8 +15,6 @@ export class SearchService {
     }
 
     getSearchResults(): Recipe[] {
-        console.log("search results from service");
-        console.log(this.searchResults);
         return this.searchResults;
     }
 

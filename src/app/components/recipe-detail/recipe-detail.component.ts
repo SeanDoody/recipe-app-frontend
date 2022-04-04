@@ -12,7 +12,6 @@ import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 export class RecipeDetailComponent implements OnInit {
 
     apiUri: string = '';
-    favoriteUris: string[] = [];
     recipeSaved: boolean = false;
     currentRecipe: Recipe = {
         name: '',
@@ -39,55 +38,21 @@ export class RecipeDetailComponent implements OnInit {
     getRecipeInfo(): void {
         this.edamamApiService.getRecipeByUri(this.apiUri).subscribe((data: any) => {
             this.currentRecipe = new Recipe('edamamApi', data);
-            // this.currentRecipe = {
-            //     name: data.recipe.label,
-            //     apiUri: this.apiUri,
-            //     apiUrl: data._links.self.href,
-            //     sourceName: data.recipe.source,
-            //     sourceUrl: data.recipe.url,
-            //     imageUrl: data.recipe.image,
-            //     cuisineType: data.recipe.cuisineType,
-            //     healthLabels: data.recipe.healthLabels,
-            //     ingredients: data.recipe.ingredientLines,
-            //     dishType: data.recipe.dishType,
-            //     totalTime: data.recipe.totalTime,
-            //     yield: data.recipe.yield
-            // };
-        });
-    }
-
-    updateFavoriteUris(): void {
-        this.favoritesService.getFavoriteRecipes().subscribe((data: any) => {
-            this.favoriteUris = [];
-            for (let record of data) {
-                this.favoriteUris.push(record.api_uri);
-            }
         });
     }
 
     isRecipeSaved(apiUri: string): boolean {
-        let recipeSaved: boolean = false;
-        for (let favoriteUri of this.favoriteUris) {
-            if (favoriteUri === apiUri) {
-                recipeSaved = true;
-                break;
-            }
-        }
-        return recipeSaved;
+        return this.favoritesService.isRecipeSaved(apiUri);
     }
 
-    addToFavorites(recipe: Recipe): void {
-        this.favoritesService.addToFavorites(recipe).subscribe((data: any) => {
-            console.log(`${recipe.apiUri} added to favorites`);
-        });
-        this.updateFavoriteUris();
+    async addToFavorites(recipe: Recipe) {
+        await this.favoritesService.addToFavorites(recipe);
+        await this.favoritesService.updateFavorites();
     }
 
-    deleteFromFavorites(apiUri: string): void {
-        this.favoritesService.deleteFromFavorites(apiUri).subscribe(() => {
-            console.log(`${apiUri} deleted from favorites`);
-        });
-        this.updateFavoriteUris();
+    async deleteFromFavorites(apiUri: string) {
+        await this.favoritesService.deleteFromFavorites(apiUri);
+        await this.favoritesService.updateFavorites();
     }
 
 }

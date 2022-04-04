@@ -15,28 +15,19 @@ export class FavoritesPageComponent implements OnInit {
     constructor(private favoritesService: FavoritesService) { }
 
     ngOnInit(): void {
-        this.updateFavoritesList();
+        this.getFavorites();
     }
 
-    updateFavoritesList(): void {
-        this.favoritesService.getFavoriteRecipes().subscribe((data: any) => {
-            this.favoriteRecipes = [];
-            for (let record of data) {
-                this.favoriteRecipes.push(new Recipe('favorites', record));
-            }
-            if (this.favoriteRecipes.length === 0) {
-                this.noFavorites = true;
-            } else {
-                this.noFavorites = false;
-            }
-        });
+    async getFavorites(): Promise<any> {
+        await this.favoritesService.updateFavorites();
+        this.favoriteRecipes = this.favoritesService.getFavorites();
+        this.noFavorites = this.favoriteRecipes.length === 0;
     }
 
-    deleteFromFavorites(apiUri: string): void {
-        this.favoritesService.deleteFromFavorites(apiUri).subscribe(() => {
-            console.log(`${apiUri} deleted from favorites`);
-        });
-        this.updateFavoritesList();
+    async deleteFromFavorites(apiUri: string) {
+        await this.favoritesService.deleteFromFavorites(apiUri);
+        await this.favoritesService.updateFavorites();
+        this.getFavorites();
     }
 
 }

@@ -12,13 +12,11 @@ import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 export class RecipeListComponent implements OnInit {
 
     recipeList: Recipe[] = [];
-    favoriteUris: string[] = [];
 
     constructor(private edamamApiService: EdamamApiService, private searchService: SearchService,
         private favoritesService: FavoritesService) { }
 
     ngOnInit(): void {
-        this.updateFavoriteUris();
         this.recipeList = this.searchService.getSearchResults();
     }
 
@@ -36,38 +34,18 @@ export class RecipeListComponent implements OnInit {
         });
     }
 
-    updateFavoriteUris(): void {
-        this.favoritesService.getFavoriteRecipes().subscribe((data: any) => {
-            this.favoriteUris = [];
-            for (let record of data) {
-                this.favoriteUris.push(record.api_uri);
-            }
-        });
+    isRecipeSaved(apiUri: string) {
+        return this.favoritesService.isRecipeSaved(apiUri);
     }
 
-    isRecipeSaved(apiUri: string): boolean {
-        let recipeSaved: boolean = false;
-        for (let favoriteUri of this.favoriteUris) {
-            if (favoriteUri === apiUri) {
-                recipeSaved = true;
-                break;
-            }
-        }
-        return recipeSaved;
+    async addToFavorites(recipe: Recipe) {
+        await this.favoritesService.addToFavorites(recipe);
+        await this.favoritesService.updateFavorites();
     }
 
-    addToFavorites(recipe: Recipe): void {
-        this.favoritesService.addToFavorites(recipe).subscribe((data: any) => {
-            console.log(`${recipe.apiUri} added to favorites`);
-        });
-        this.updateFavoriteUris();
-    }
-
-    deleteFromFavorites(apiUri: string): void {
-        this.favoritesService.deleteFromFavorites(apiUri).subscribe(() => {
-            console.log(`${apiUri} deleted from favorites`);
-        });
-        this.updateFavoriteUris();
+    async deleteFromFavorites(apiUri: string) {
+        await this.favoritesService.deleteFromFavorites(apiUri);
+        await this.favoritesService.updateFavorites();
     }
 
 }

@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
         this.router.events.subscribe((event: Event) => {
             if (event instanceof NavigationEnd) {
                 this.currentRoute = event.url;
-                if (this.currentRoute = '/') {
+                if (this.currentRoute === '/') {
                     this.currentRoute = '/search';
                 }
             }

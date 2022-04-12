@@ -1,32 +1,36 @@
 <div id="parent">
-    <h2 id="recipe-name">{{ currentRecipe.name }}</h2>
-    <p id="recipe-source">
-        <a href="{{ currentRecipe.sourceUrl }}" target="_blank">{{
-            currentRecipe.sourceName
-        }}</a>
-    </p>
-    <div id="content-flex">
+    <div id="name-parent">
+        <div id="text-parent">
+            <h2 id="recipe-name">{{ currentRecipe.name }}</h2>
+            <p id="recipe-source">
+                <a href="{{ currentRecipe.sourceUrl }}" target="_blank">{{
+                    currentRecipe.sourceName
+                }}</a>
+            </p>
+        </div>
+        <div id="icon-parent">
+            <mat-icon class="favorite-icon outer">lens</mat-icon>
+            <mat-icon
+                *ngIf="!isRecipeSaved(currentRecipe.apiUri)"
+                (click)="addToFavorites(currentRecipe)"
+                class="favorite-icon inner"
+                >favorite_border</mat-icon
+            >
+            <mat-icon
+                *ngIf="isRecipeSaved(currentRecipe.apiUri)"
+                (click)="deleteFromFavorites(currentRecipe.apiUri)"
+                [ngClass]="
+                    isRecipeSaved(currentRecipe.apiUri) ? 'grow-and-shrink' : ''
+                "
+                class="favorite-icon inner"
+            >
+                favorite</mat-icon
+            >
+        </div>
+    </div>
+    <div id="content-parent">
         <div id="picture-parent">
             <img src="{{ currentRecipe.imageUrl }}" alt="image" />
-            <div>
-                <mat-icon class="favorite-icon outer">lens</mat-icon>
-                <mat-icon
-                    *ngIf="!isRecipeSaved(currentRecipe.apiUri)"
-                    (click)="addToFavorites(currentRecipe)"
-                    class="favorite-icon inner"
-                    >favorite_border</mat-icon
-                >
-                <mat-icon
-                    *ngIf="isRecipeSaved(currentRecipe.apiUri)"
-                    (click)="deleteFromFavorites(currentRecipe.apiUri)"
-                    [ngClass]="
-                        isRecipeSaved(currentRecipe.apiUri) ? 'grow-and-shrink' : ''
-                    "
-                    class="favorite-icon inner"
-                >
-                    favorite</mat-icon
-                >
-            </div>
         </div>
         <div id="ingredients-parent">
             <h3>Ingredients</h3>

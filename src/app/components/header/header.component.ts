@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit(): void {
         this.innerWidth = window.innerWidth;
-        if (this.innerWidth >= 1025) {
+        if (this.innerWidth >= 1024) {
             this.showNav = true;
         }
         this.router.events.subscribe((event: Event) => {
@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
     @HostListener('window:resize', ['$event'])
     onResize() {
         this.innerWidth = window.innerWidth;
-        if (this.innerWidth >= 1025) {
+        if (this.innerWidth >= 1024) {
             this.showNav = true;
         } else {
             this.showNav = false;
@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
     }
 
     toggleNav(): void {
-        if (this.innerWidth < 1025) {
+        if (this.innerWidth < 1024) {
             this.showNav = !this.showNav;
         }
     }

@@ -1,5 +1,5 @@
 export interface SearchEvent {
-    keywords: string;
-    dishType: string[];
-    dietaryRestrictions: string[];
+  keywords: string;
+  dishType: string[];
+  dietaryRestrictions: string[];
 }

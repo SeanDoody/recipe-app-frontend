@@ -16,27 +16,27 @@ import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        SearchCriteriaComponent,
-        RecipeListComponent,
-        FavoritesPageComponent,
-        HeaderComponent,
-        RecipeDetailComponent
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MatIconModule,
-        MatCheckboxModule
-    ],
-    providers: [
-        EdamamApiService,
-        FavoritesService
-    ],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    SearchCriteriaComponent,
+    RecipeListComponent,
+    FavoritesPageComponent,
+    HeaderComponent,
+    RecipeDetailComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatCheckboxModule
+  ],
+  providers: [
+    EdamamApiService,
+    FavoritesService
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

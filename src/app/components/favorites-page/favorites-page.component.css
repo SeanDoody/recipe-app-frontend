@@ -1,28 +1,28 @@
 /* mobile styling */
 
 #no-fav-msg {
-    font-size: 1.5rem;
-    margin: 1rem;
+  font-size: 1.5rem;
+  margin: 1rem;
 }
 
 #no-fav-msg a {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 /* tablet styling */
 
 @media only screen and (min-width: 768px) {
-    #no-fav-msg {
-        font-size: 2.5rem;
-        margin: 2rem;
-    }
+  #no-fav-msg {
+    font-size: 2.5rem;
+    margin: 2rem;
+  }
 }
 
 /* desktop styling */
 
 @media only screen and (min-width: 1024px) {
-    #no-fav-msg {
-        font-size: 2rem;
-        margin: 2rem;
-    }
+  #no-fav-msg {
+    font-size: 2rem;
+    margin: 2rem;
+  }
 }

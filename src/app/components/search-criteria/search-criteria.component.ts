@@ -4,7 +4,7 @@ import { SearchEvent } from 'src/app/models/search-event';
 @Component({
   selector: 'app-search-criteria',
   templateUrl: './search-criteria.component.html',
-  styleUrls: ['./search-criteria.component.css']
+  styleUrls: ['./search-criteria.component.scss']
 })
 export class SearchCriteriaComponent implements OnInit {
 

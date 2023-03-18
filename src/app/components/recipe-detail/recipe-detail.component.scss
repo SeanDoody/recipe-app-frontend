@@ -1,6 +1,8 @@
-/* mobile styling */
+@use "src/variables";
 
-#parent {
+// mobile styling
+
+.parent {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,7 +10,7 @@
   padding: 1rem;
 }
 
-#name-parent {
+.name-parent {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,13 +18,13 @@
   width: 100%;
 }
 
-#recipe-name {
+.recipe-name {
   font-size: 2rem;
   text-align: center;
   margin-bottom: 0.5rem;
 }
 
-#recipe-source {
+.recipe-source {
   text-align: center;
   width: 100%;
   overflow: hidden;
@@ -31,13 +33,13 @@
   color: black;
   text-decoration: underline;
   margin-bottom: 1rem;
+
+  a {
+    font-size: 2rem;
+  }
 }
 
-#recipe-source a {
-  font-size: 2rem;
-}
-
-#icon-parent {
+.icon-parent {
   position: relative;
   display: flex;
   align-items: center;
@@ -60,7 +62,7 @@
   transform: scale(2.1);
 }
 
-#picture-parent {
+.picture-parent {
   width: 100%;
   position: relative;
   display: flex;
@@ -74,7 +76,7 @@ img {
   box-shadow: 0.5rem 0.5rem 1rem rgb(41, 41, 41);
 }
 
-#ingredients-parent {
+.ingredients-parent {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -92,29 +94,29 @@ li {
   margin-left: 1.5rem;
 }
 
-/* tablet styling */
+// tablet styling
 
-@media only screen and (min-width: 768px) {
-  #parent {
+@media only screen and (min-width: variables.$tablet-breakpoint) {
+  .parent {
     padding-top: 2rem;
     padding-bottom: 2rem;
     padding-left: 3.5rem;
     padding-right: 3.5rem;
   }
 
-  #recipe-name {
+  .recipe-name {
     font-size: 3rem;
   }
 
-  #recipe-source {
+  .recipe-source {
     margin-bottom: 2rem;
+
+    a {
+      font-size: 3rem;
+    }
   }
 
-  #recipe-source a {
-    font-size: 3rem;
-  }
-
-  #icon-parent {
+  .icon-parent {
     margin-top: 2rem;
     margin-bottom: 4.5rem;
   }
@@ -144,45 +146,45 @@ li {
 
 /* desktop styling */
 
-@media only screen and (min-width: 1024px) {
-  #parent {
+@media only screen and (min-width: variables.$desktop-breakpoint) {
+  .parent {
     padding-top: 1rem;
     padding-bottom: 3rem;
     padding-left: 3rem;
     padding-right: 3rem;
   }
 
-  #name-parent {
+  .name-parent {
     flex-direction: row;
     margin-bottom: 2rem;
   }
 
-  #text-parent {
+  .text-parent {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     width: auto;
   }
 
-  #recipe-source {
+  .recipe-source {
     margin: 0;
   }
 
-  #icon-parent {
+  .icon-parent {
     margin: 0;
     height: 7.5rem;
     width: 7.5rem;
     margin-left: 2rem;
   }
 
-  #content-parent {
+  .content-parent {
     display: flex;
     flex-direction: row-reverse;
     width: 100%;
     justify-content: center;
   }
 
-  #picture-parent {
+  .picture-parent {
     display: block;
     width: 30%;
     margin-bottom: 0;
@@ -194,7 +196,7 @@ li {
     margin-top: 2rem;
   }
 
-  #ingredients-parent {
+  .ingredients-parent {
     width: 40%;
     align-items: flex-start;
   }

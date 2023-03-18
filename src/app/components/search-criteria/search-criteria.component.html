@@ -1,14 +1,24 @@
 <h2>Recipe Search</h2>
 <form (ngSubmit)="newSearch()">
-  <div id="criteria-flex">
+  <div class="criteria-flex">
     <label for="keywords">Keywords</label>
-    <input [(ngModel)]="keywords" type="text" id="keywords" name="keywords" />
+    <input
+      [(ngModel)]="keywords"
+      type="text"
+      class="keywords"
+      name="keywords"
+    />
     <label for="dish-type"
       >Dish Type <span>*hold CTRL to select multiple options</span></label
     >
-    <div id="desktop-flex">
-      <div id="dish-type-parent">
-        <select [(ngModel)]="dishType" id="dish-type" name="dish-type" multiple>
+    <div class="desktop-flex">
+      <div class="dish-type-parent">
+        <select
+          [(ngModel)]="dishType"
+          class="dish-type"
+          name="dish-type"
+          multiple
+        >
           <option value="Biscuits and cookies">Biscuits and cookies</option>
           <option value="Bread">Bread</option>
           <option value="Cereals">Cereals</option>
@@ -27,14 +37,14 @@
           <option value="Sweets">Sweets</option>
         </select>
       </div>
-      <label for="dietary-restrictions" id="dietary-restrictions-label"
+      <label for="dietary-restrictions" class="dietary-restrictions-label"
         >Dietary Restrictions</label
       >
-      <div id="dietary-restrictions">
+      <div class="dietary-restrictions">
         <div>
           <mat-checkbox
             [(ngModel)]="glutenFree"
-            id="gluten-free"
+            class="gluten-free"
             name="gluten-free"
           ></mat-checkbox>
           <label for="gluten-free">Gluten-free</label>
@@ -42,7 +52,7 @@
         <div>
           <mat-checkbox
             [(ngModel)]="vegan"
-            id="vegan"
+            class="vegan"
             name="vegan"
           ></mat-checkbox>
           <label for="vegan">Vegan</label>
@@ -50,7 +60,7 @@
         <div>
           <mat-checkbox
             [(ngModel)]="vegetarian"
-            id="vegetarian"
+            class="vegetarian"
             name="vegetarian"
           ></mat-checkbox>
           <label for="vegetarian">Vegetarian</label>
@@ -58,11 +68,11 @@
       </div>
     </div>
   </div>
-  <div id="wheel-flex">
+  <div class="wheel-flex">
     <img
       (click)="newSearch()"
       [ngClass]="spinWheel ? 'rotate' : ''"
-      id="roulette-wheel"
+      class="roulette-wheel"
       src="assets/images/roulette-wheel.png"
       alt="search button"
     />
@@ -70,5 +80,5 @@
   </div>
 </form>
 
-<!-- style icons PNG Designed By Ylivdesign from https://pngtree.com/freepng/casino-gambling-roulette-icon-flat-style_5252282.html?sol=downref&id=bef -->
+<!-- style icons PNG Designed By Ylivdesign from https://pngtree.com/freepng/casino-gambling-roulette-icon-flat-style_5252282.html?sol=downref&class=bef -->
 <!-- <a href='https://pngtree.com/so/casino'>casino png from pngtree.com/</a> -->

@@ -1,0 +1,30 @@
+@use "src/variables";
+
+// mobile styling
+
+.no-fav-msg {
+  font-size: 1.5rem;
+  margin: 1rem;
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+// tablet styling
+
+@media only screen and (min-width: variables.$tablet-breakpoint) {
+  .no-fav-msg {
+    font-size: 2.5rem;
+    margin: 2rem;
+  }
+}
+
+// desktop styling
+
+@media only screen and (min-width: variables.$desktop-breakpoint) {
+  .no-fav-msg {
+    font-size: 2rem;
+    margin: 2rem;
+  }
+}

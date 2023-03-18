@@ -1,8 +1,8 @@
-<p *ngIf="noFavorites" id="no-fav-msg">
+<p *ngIf="noFavorites" class="no-fav-msg">
   No favorites saved! Click <a routerLink="/search">here</a> to search for
   recipes.
 </p>
-<div id="recipe-parent">
+<div class="recipe-parent">
   <div *ngFor="let recipe of favoriteRecipes" class="recipe">
     <div class="recipe-image-parent">
       <img

@@ -5,7 +5,7 @@ import { Recipe } from 'src/app/models/recipe';
 @Component({
   selector: 'app-favorites-page',
   templateUrl: './favorites-page.component.html',
-  styleUrls: ['./favorites-page.component.css']
+  styleUrls: ['./favorites-page.component.scss']
 })
 export class FavoritesPageComponent implements OnInit {
 

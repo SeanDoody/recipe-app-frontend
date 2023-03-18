@@ -1,11 +1,13 @@
-/* mobile styling */
+@use "src/variables";
+
+// mobile styling
 
 header {
   display: flex;
   justify-content: space-between;
-  background-color: green;
+  background-color: variables.$roulette-green;
   padding: 0.5rem;
-  border-bottom: solid 0.2rem #8b0000;
+  border-bottom: solid 0.2rem variables.$roulette-red;
 }
 
 div {
@@ -21,13 +23,13 @@ h1 {
   font-family: "Monoton", cursive;
   font-size: 2.5rem;
   line-height: 2.5rem;
-  color: #8b0000;
+  color: variables.$roulette-red;
   font-weight: 500;
 }
 
 mat-icon {
   transform: scale(2);
-  color: #8b0000;
+  color: variables.$roulette-red;
   margin: 1rem;
   opacity: 50%;
   font-weight: 600;
@@ -39,14 +41,14 @@ nav {
   position: absolute;
   top: 3.5rem;
   right: 0;
-  background-color: green;
-  border: solid 0.1rem #8b0000;
+  background-color: variables.$roulette-green;
+  border: solid 0.1rem variables.$roulette-red;
   padding: 0.5rem;
 }
 
 a {
   font-size: 1.5rem;
-  color: #8b0000;
+  color: variables.$roulette-red;
   text-decoration: none;
 }
 
@@ -54,9 +56,9 @@ a {
   text-decoration: underline;
 }
 
-/* tablet styling */
+// tablet styling
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: variables.$tablet-breakpoint) {
   header {
     align-items: center;
     padding: 1rem;
@@ -80,8 +82,8 @@ a {
 
   nav {
     top: 6rem;
-    background-color: green;
-    border: solid 0.1rem #8b0000;
+    background-color: variables.$roulette-green;
+    border: solid 0.1rem variables.$roulette-red;
     padding: 0.5rem;
   }
 
@@ -90,9 +92,9 @@ a {
   }
 }
 
-/* desktop styling */
+// desktop styling
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: variables.$desktop-breakpoint) {
   header {
     padding-left: 2rem;
     padding-right: 2.5rem;

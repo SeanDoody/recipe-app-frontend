@@ -1,6 +1,7 @@
+@use "src/variables";
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 
-/* mobile styling */
+// mobile styling
 
 * {
   font-family: "Roboto Slab", serif;
@@ -29,7 +30,7 @@ a {
   color: black;
 }
 
-#recipe-parent {
+.recipe-parent {
   width: 100%;
   position: relative;
   padding-bottom: 1rem;
@@ -114,10 +115,10 @@ a {
   display: none;
 }
 
-/* tablet styling */
+// tablet styling
 
-@media only screen and (min-width: 768px) {
-  #recipe-parent {
+@media only screen and (min-width: variables.$tablet-breakpoint) {
+  .recipe-parent {
     padding-bottom: 2rem;
   }
 
@@ -176,16 +177,16 @@ a {
   }
 }
 
-/* desktop styling */
+// desktop styling
 
-@media only screen and (min-width: 1024px) {
-  #recipe-parent {
+@media only screen and (min-width: variables.$desktop-breakpoint) {
+  .recipe-parent {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
 
-  #recipe-parent * {
+  .recipe-parent * {
     margin: 0;
     padding: 0;
   }

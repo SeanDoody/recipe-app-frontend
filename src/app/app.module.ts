@@ -1,37 +1,37 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SearchCriteriaComponent } from './components/search-criteria/search-criteria.component';
-import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
 import { FavoritesPageComponent } from './components/favorites-page/favorites-page.component';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule } from '@angular/material/icon';
-import { EdamamApiService } from './services/edamam-api/edamam-api.service';
-import { FavoritesService } from './services/favorites/favorites.service';
 import { HeaderComponent } from './components/header/header.component';
 import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
+import { SearchCriteriaComponent } from './components/search-criteria/search-criteria.component';
+import { EdamamApiService } from './services/edamam-api/edamam-api.service';
+import { FavoritesService } from './services/favorites/favorites.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchCriteriaComponent,
-    RecipeListComponent,
     FavoritesPageComponent,
     HeaderComponent,
-    RecipeDetailComponent
+    RecipeDetailComponent,
+    RecipeListComponent,
+    SearchCriteriaComponent,
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    BrowserModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
+    MatCheckboxModule,
     MatIconModule,
-    MatCheckboxModule
   ],
   providers: [
     EdamamApiService,

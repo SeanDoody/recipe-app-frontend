@@ -13,7 +13,7 @@ import { EdamamApiService } from './services/edamam-api/edamam-api.service';
 import { FavoritesService } from './services/favorites/favorites.service';
 import { HeaderComponent } from './components/header/header.component';
 import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatLegacyCheckboxModule as MatCheckboxModule } from '@angular/material/legacy-checkbox';
 
 @NgModule({
   declarations: [

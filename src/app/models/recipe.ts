@@ -14,7 +14,6 @@ export interface IRecipe {
 }
 
 export class Recipe implements IRecipe {
-
   name: string;
   apiUri: string;
   apiUrl: string;
@@ -42,7 +41,8 @@ export class Recipe implements IRecipe {
       this.dishType = data.dish_type;
       this.totalTime = data.total_time;
       this.yield = data.yield;
-    } else {    // source === 'edamamApi'
+    } else {
+      // source === 'edamamApi'
       this.name = data.recipe.label;
       this.apiUri = data._links.self.href.substring(38, 70);
       this.apiUrl = data._links.self.href;
@@ -56,7 +56,5 @@ export class Recipe implements IRecipe {
       this.totalTime = data.recipe.totalTime;
       this.yield = data.recipe.yield;
     }
-
   }
-
 }

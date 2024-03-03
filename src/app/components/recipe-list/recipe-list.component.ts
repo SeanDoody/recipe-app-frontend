@@ -7,20 +7,22 @@ import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
-  styleUrls: ['./recipe-list.component.scss']
+  styleUrls: ['./recipe-list.component.scss'],
 })
 export class RecipeListComponent implements OnInit {
+  public recipeList: Recipe[] = [];
 
-  recipeList: Recipe[] = [];
-
-  constructor(private edamamApiService: EdamamApiService, private searchService: SearchService,
-    private favoritesService: FavoritesService) { }
+  constructor(
+    private edamamApiService: EdamamApiService,
+    private searchService: SearchService,
+    private favoritesService: FavoritesService
+  ) {}
 
   ngOnInit(): void {
     this.recipeList = this.searchService.getSearchResults();
   }
 
-  updateRecipeList(apiData: any): void {
+  private updateRecipeList(apiData: any): void {
     this.recipeList = [];
     for (let hit of apiData.hits) {
       this.recipeList.push(new Recipe('edamamApi', hit));
@@ -28,24 +30,21 @@ export class RecipeListComponent implements OnInit {
     this.searchService.setSearchResults(this.recipeList);
   }
 
-  searchForRecipes(searchEvent: any): void {
+  public searchForRecipes(searchEvent: any): void {
     this.edamamApiService.getRecipes(searchEvent).subscribe((data: any) => {
       this.updateRecipeList(data);
     });
   }
 
-  isRecipeSaved(apiUri: string) {
+  public isRecipeSaved(apiUri: string): boolean {
     return this.favoritesService.isRecipeSaved(apiUri);
   }
 
-  async addToFavorites(recipe: Recipe) {
-    await this.favoritesService.addToFavorites(recipe);
-    await this.favoritesService.updateFavorites();
+  public addToFavorites(recipe: Recipe): void {
+    this.favoritesService.addToFavorites(recipe);
   }
 
-  async deleteFromFavorites(apiUri: string) {
-    await this.favoritesService.deleteFromFavorites(apiUri);
-    await this.favoritesService.updateFavorites();
+  public deleteFromFavorites(recipe: Recipe): void {
+    this.favoritesService.deleteFromFavorites(recipe);
   }
-
 }

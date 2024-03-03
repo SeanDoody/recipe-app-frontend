@@ -7,13 +7,12 @@ import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
-  styleUrls: ['./recipe-detail.component.scss']
+  styleUrls: ['./recipe-detail.component.scss'],
 })
 export class RecipeDetailComponent implements OnInit {
-
-  apiUri: string = '';
-  recipeSaved: boolean = false;
-  currentRecipe: Recipe = {
+  private apiUri: string = '';
+  private recipeSaved: boolean = false;
+  public currentRecipe: Recipe = {
     name: '',
     apiUri: '',
     apiUrl: '',
@@ -25,34 +24,35 @@ export class RecipeDetailComponent implements OnInit {
     ingredients: [],
     dishType: [],
     totalTime: 0,
-    yield: 0
+    yield: 0,
   };
 
-  constructor(private edamamApiService: EdamamApiService, private favoritesService: FavoritesService, private route: ActivatedRoute) { }
+  constructor(
+    private edamamApiService: EdamamApiService,
+    private favoritesService: FavoritesService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.apiUri = this.route.snapshot.params.apiUri;
     this.getRecipeInfo();
   }
 
-  getRecipeInfo(): void {
+  private getRecipeInfo(): void {
     this.edamamApiService.getRecipeByUri(this.apiUri).subscribe((data: any) => {
       this.currentRecipe = new Recipe('edamamApi', data);
     });
   }
 
-  isRecipeSaved(apiUri: string): boolean {
+  public isRecipeSaved(apiUri: string): boolean {
     return this.favoritesService.isRecipeSaved(apiUri);
   }
 
-  async addToFavorites(recipe: Recipe) {
-    await this.favoritesService.addToFavorites(recipe);
-    await this.favoritesService.updateFavorites();
+  public addToFavorites(recipe: Recipe) {
+    this.favoritesService.addToFavorites(recipe);
   }
 
-  async deleteFromFavorites(apiUri: string) {
-    await this.favoritesService.deleteFromFavorites(apiUri);
-    await this.favoritesService.updateFavorites();
+  public deleteFromFavorites(recipe: Recipe) {
+    this.favoritesService.deleteFromFavorites(recipe);
   }
-
 }

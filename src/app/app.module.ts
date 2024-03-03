@@ -33,10 +33,7 @@ import { FavoritesService } from './services/favorites/favorites.service';
     MatCheckboxModule,
     MatIconModule,
   ],
-  providers: [
-    EdamamApiService,
-    FavoritesService
-  ],
-  bootstrap: [AppComponent]
+  providers: [EdamamApiService, FavoritesService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

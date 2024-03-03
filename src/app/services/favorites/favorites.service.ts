@@ -5,7 +5,23 @@ import { Recipe } from 'src/app/models/recipe';
   providedIn: 'root',
 })
 export class FavoritesService {
-  private favoriteRecipes: Recipe[] = [];
+  private favoriteRecipes: Recipe[];
+
+  constructor() {
+    const favoriteRecipes = localStorage.getItem('favoriteRecipes');
+    if (favoriteRecipes) {
+      this.favoriteRecipes = JSON.parse(favoriteRecipes);
+    } else {
+      this.favoriteRecipes = [];
+    }
+  }
+
+  private setFavorites(): void {
+    localStorage.setItem(
+      'favoriteRecipes',
+      JSON.stringify(this.favoriteRecipes)
+    );
+  }
 
   public getFavorites(): Recipe[] {
     return this.favoriteRecipes;
@@ -23,10 +39,18 @@ export class FavoritesService {
   }
 
   public addToFavorites(recipe: Recipe): void {
-    console.log('add to favorites', recipe);
+    this.favoriteRecipes.push(recipe);
+    this.setFavorites();
   }
 
   public deleteFromFavorites(recipe: Recipe): void {
-    console.log('delete from favorites', recipe);
+    const index = this.favoriteRecipes.findIndex(
+      (r) => r.apiUri === recipe.apiUri
+    );
+
+    if (index >= 0) {
+      this.favoriteRecipes.splice(index, 1);
+      this.setFavorites();
+    }
   }
 }

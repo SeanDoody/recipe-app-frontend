@@ -1,38 +1,33 @@
 import { Injectable } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe';
-import { HttpClient } from '@angular/common/http';
-import { Observable, lastValueFrom } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FavoritesService {
+  private favoriteRecipes: Recipe[];
 
-  // local
-  // backendUrl: string = 'http://localhost:3000/favorite-recipes';
-
-  // heroku
-  backendUrl: string = 'https://recipe-roulette-backend.herokuapp.com/favorite-recipes';
-  favoriteRecipes: Recipe[] = [];
-
-  constructor(private http: HttpClient) {
-    this.updateFavorites();
-  }
-
-  async updateFavorites() {
-    let data: any = this.http.get(this.backendUrl);
-    data = await lastValueFrom(data);
-    this.favoriteRecipes = [];
-    for (let record of data) {
-      this.favoriteRecipes.push(new Recipe('favorites', record));
+  constructor() {
+    const favoriteRecipes = localStorage.getItem('favoriteRecipes');
+    if (favoriteRecipes) {
+      this.favoriteRecipes = JSON.parse(favoriteRecipes);
+    } else {
+      this.favoriteRecipes = [];
     }
   }
 
-  getFavorites(): Recipe[] {
+  private setFavorites(): void {
+    localStorage.setItem(
+      'favoriteRecipes',
+      JSON.stringify(this.favoriteRecipes)
+    );
+  }
+
+  public getFavorites(): Recipe[] {
     return this.favoriteRecipes;
   }
 
-  isRecipeSaved(apiUri: string): boolean {
+  public isRecipeSaved(apiUri: string): boolean {
     let recipeSaved: boolean = false;
     for (let recipe of this.favoriteRecipes) {
       if (recipe.apiUri === apiUri) {
@@ -43,14 +38,19 @@ export class FavoritesService {
     return recipeSaved;
   }
 
-  async addToFavorites(recipe: Recipe) {
-    let data: any = this.http.post<Recipe>(this.backendUrl, recipe);
-    data = await lastValueFrom(data);
+  public addToFavorites(recipe: Recipe): void {
+    this.favoriteRecipes.push(recipe);
+    this.setFavorites();
   }
 
-  async deleteFromFavorites(apiUri: string) {
-    let data: any = this.http.delete(`${this.backendUrl}/${apiUri}`);
-    data = await lastValueFrom(data);
-  }
+  public deleteFromFavorites(recipe: Recipe): void {
+    const index = this.favoriteRecipes.findIndex(
+      (r) => r.apiUri === recipe.apiUri
+    );
 
+    if (index >= 0) {
+      this.favoriteRecipes.splice(index, 1);
+      this.setFavorites();
+    }
+  }
 }

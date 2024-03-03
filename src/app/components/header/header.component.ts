@@ -5,15 +5,14 @@ import { HostListener } from '@angular/core';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-
   showNav: boolean = false;
   currentRoute: string = '';
   innerWidth: number = 0;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
@@ -45,5 +44,4 @@ export class HeaderComponent implements OnInit {
       this.showNav = !this.showNav;
     }
   }
-
 }

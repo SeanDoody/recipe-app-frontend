@@ -20,7 +20,7 @@
       >
       <mat-icon
         *ngIf="isRecipeSaved(recipe.apiUri)"
-        (click)="deleteFromFavorites(recipe.apiUri)"
+        (click)="deleteFromFavorites(recipe)"
         [ngClass]="isRecipeSaved(recipe.apiUri) ? 'grow-and-shrink' : ''"
         class="recipe-icon inner"
         >favorite</mat-icon

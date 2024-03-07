@@ -1,39 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Observable, shareReplay } from 'rxjs';
 import { Recipe } from 'src/app/models/recipe.interface';
+import { SearchEvent } from 'src/app/models/search-event.interface';
 import { EdamamApiService } from 'src/app/services/edamam-api/edamam-api.service';
 import { FavoritesService } from 'src/app/services/favorites/favorites.service';
-import { SearchService } from 'src/app/services/search/search.service';
 
 @Component({
   selector: 'app-recipe-search-results',
   templateUrl: './recipe-search-results.component.html',
   styleUrls: ['./recipe-search-results.component.scss'],
 })
-export class SearchResultsComponent implements OnInit {
-  public recipeList: Recipe[] = [];
+export class SearchResultsComponent {
+  public recipes$: Observable<Recipe[]> | null = null;
 
   constructor(
     private edamamApiService: EdamamApiService,
-    private searchService: SearchService,
     private favoritesService: FavoritesService
   ) {}
 
-  ngOnInit(): void {
-    this.recipeList = this.searchService.getSearchResults();
-  }
-
-  private updateRecipeList(apiData: any): void {
-    this.recipeList = [];
-    for (let hit of apiData.hits) {
-      this.recipeList.push(new Recipe('edamamApi', hit));
-    }
-    this.searchService.setSearchResults(this.recipeList);
-  }
-
-  public searchForRecipes(searchEvent: any): void {
-    this.edamamApiService.getRecipes(searchEvent).subscribe((data: any) => {
-      this.updateRecipeList(data);
-    });
+  public onSearch(searchEvent: SearchEvent): void {
+    this.recipes$ = this.edamamApiService.getRecipes(searchEvent);
   }
 
   public isRecipeSaved(apiUri: string): boolean {

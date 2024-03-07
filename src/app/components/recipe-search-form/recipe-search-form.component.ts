@@ -9,7 +9,7 @@ import { SearchEvent } from 'src/app/models/search-event.interface';
   styleUrls: ['./recipe-search-form.component.scss'],
 })
 export class RecipeSearchFormComponent {
-  @Output() newSearchEvent = new EventEmitter<SearchEvent>();
+  @Output() searchEvent = new EventEmitter<SearchEvent>();
 
   public searchForm = new FormGroup<RecipeSearchForm>({
     keywords: new FormControl(),
@@ -33,6 +33,7 @@ export class RecipeSearchFormComponent {
     if (formValue.vegetarian) {
       dietaryRestrictions.push('vegetarian');
     }
+    // To-Do: replace with custom validator
     if (
       formValue.keywords === '' &&
       formValue.dishType?.length === 0 &&
@@ -47,9 +48,7 @@ export class RecipeSearchFormComponent {
         dietaryRestrictions: dietaryRestrictions,
       };
       setTimeout(() => {
-        this.newSearchEvent.emit(newEvent);
-      }, 1000);
-      setTimeout(() => {
+        this.searchEvent.emit(newEvent);
         this.spinWheel = false;
       }, 1000);
     }

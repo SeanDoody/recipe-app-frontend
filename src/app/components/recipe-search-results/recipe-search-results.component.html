@@ -1,42 +1,45 @@
 <app-recipe-search-form
-  (newSearchEvent)="searchForRecipes($event)"
+  (searchEvent)="onSearch($event)"
 ></app-recipe-search-form>
+
 <div class="recipe-parent">
-  <div *ngFor="let recipe of recipeList" class="recipe">
-    <div class="recipe-image-parent">
-      <img
-        [routerLink]="['/search', recipe.apiUri]"
-        src="{{ recipe.imageUrl }}"
-        alt="image"
-        class="recipe-image"
-      />
-      <mat-icon class="recipe-icon outer">lens</mat-icon>
-      <mat-icon
-        *ngIf="!isRecipeSaved(recipe.apiUri)"
-        (click)="addToFavorites(recipe)"
-        class="recipe-icon inner"
-      >
-        favorite_border</mat-icon
-      >
-      <mat-icon
-        *ngIf="isRecipeSaved(recipe.apiUri)"
-        (click)="deleteFromFavorites(recipe)"
-        [ngClass]="isRecipeSaved(recipe.apiUri) ? 'grow-and-shrink' : ''"
-        class="recipe-icon inner"
-        >favorite</mat-icon
-      >
+  <ng-container *ngIf="recipes$ | async as recipes">
+    <div *ngFor="let recipe of recipes" class="recipe">
+      <div class="recipe-image-parent">
+        <img
+          [routerLink]="['/search', recipe.apiUri]"
+          src="{{ recipe.imageUrl }}"
+          alt="image"
+          class="recipe-image"
+        />
+        <mat-icon class="recipe-icon outer">lens</mat-icon>
+        <mat-icon
+          *ngIf="!isRecipeSaved(recipe.apiUri)"
+          (click)="addToFavorites(recipe)"
+          class="recipe-icon inner"
+        >
+          favorite_border</mat-icon
+        >
+        <mat-icon
+          *ngIf="isRecipeSaved(recipe.apiUri)"
+          (click)="deleteFromFavorites(recipe)"
+          [ngClass]="isRecipeSaved(recipe.apiUri) ? 'grow-and-shrink' : ''"
+          class="recipe-icon inner"
+          >favorite</mat-icon
+        >
+      </div>
+      <div class="recipe-text-parent">
+        <h3 class="recipe-name">
+          <a [routerLink]="['/search', recipe.apiUri]">
+            {{ recipe.name }}
+          </a>
+        </h3>
+        <p class="recipe-source">
+          <a href="{{ recipe.sourceUrl }}" target="_blank">{{
+            recipe.sourceName
+          }}</a>
+        </p>
+      </div>
     </div>
-    <div class="recipe-text-parent">
-      <h3 class="recipe-name">
-        <a [routerLink]="['/search', recipe.apiUri]">
-          {{ recipe.name }}
-        </a>
-      </h3>
-      <p class="recipe-source">
-        <a href="{{ recipe.sourceUrl }}" target="_blank">{{
-          recipe.sourceName
-        }}</a>
-      </p>
-    </div>
-  </div>
+  </ng-container>
 </div>

@@ -1,49 +1,50 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { SearchEvent } from 'src/app/models/search-event';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { RecipeSearchForm } from 'src/app/models/recipe-search-form.interface';
+import { SearchEvent } from 'src/app/models/search-event.interface';
 
 @Component({
   selector: 'app-recipe-search-form',
   templateUrl: './recipe-search-form.component.html',
   styleUrls: ['./recipe-search-form.component.scss'],
 })
-export class RecipeSearchFormComponent implements OnInit {
+export class RecipeSearchFormComponent {
   @Output() newSearchEvent = new EventEmitter<SearchEvent>();
 
-  keywords: string = '';
-  dishType: string[] = [];
-  dietaryRestrictions: string[] = [];
-  glutenFree: boolean = false;
-  vegan: boolean = false;
-  vegetarian: boolean = false;
-  spinWheel: boolean = false;
+  public searchForm = new FormGroup<RecipeSearchForm>({
+    keywords: new FormControl(),
+    dishType: new FormControl(),
+    glutenFree: new FormControl(),
+    vegan: new FormControl(),
+    vegetarian: new FormControl(),
+  });
+  public spinWheel: boolean = false;
 
-  constructor() {}
+  public onSubmit(): void {
+    const formValue = this.searchForm.value;
+    const dietaryRestrictions = [];
 
-  ngOnInit(): void {}
-
-  newSearch(): void {
-    this.dietaryRestrictions = [];
-    if (this.glutenFree) {
-      this.dietaryRestrictions.push('gluten-free');
+    if (formValue.glutenFree) {
+      dietaryRestrictions.push('gluten-free');
     }
-    if (this.vegan) {
-      this.dietaryRestrictions.push('vegan');
+    if (formValue.vegan) {
+      dietaryRestrictions.push('vegan');
     }
-    if (this.vegetarian) {
-      this.dietaryRestrictions.push('vegetarian');
+    if (formValue.vegetarian) {
+      dietaryRestrictions.push('vegetarian');
     }
     if (
-      this.keywords === '' &&
-      this.dishType.length === 0 &&
-      this.dietaryRestrictions.length === 0
+      formValue.keywords === '' &&
+      formValue.dishType?.length === 0 &&
+      dietaryRestrictions.length === 0
     ) {
       alert('At least one criteria must be chosen to search.');
     } else {
       this.spinWheel = true;
       const newEvent: SearchEvent = {
-        keywords: this.keywords,
-        dishType: this.dishType,
-        dietaryRestrictions: this.dietaryRestrictions,
+        keywords: formValue.keywords ?? '',
+        dishType: formValue.dishType ?? [],
+        dietaryRestrictions: dietaryRestrictions,
       };
       setTimeout(() => {
         this.newSearchEvent.emit(newEvent);

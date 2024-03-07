@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SearchEvent } from 'src/app/models/search-event';
+import { SearchEvent } from 'src/app/models/search-event.interface';
 
 @Injectable({
   providedIn: 'root',

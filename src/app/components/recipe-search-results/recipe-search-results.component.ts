@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from 'src/app/models/recipe';
+import { Recipe } from 'src/app/models/recipe.interface';
 import { EdamamApiService } from 'src/app/services/edamam-api/edamam-api.service';
 import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 import { SearchService } from 'src/app/services/search/search.service';

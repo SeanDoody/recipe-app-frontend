@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserModule } from '@angular/platform-browser';
@@ -32,6 +32,7 @@ import { FavoritesService } from './services/favorites/favorites.service';
     HttpClientModule,
     MatCheckboxModule,
     MatIconModule,
+    ReactiveFormsModule,
   ],
   providers: [EdamamApiService, FavoritesService],
   bootstrap: [AppComponent],

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EdamamApiService } from 'src/app/services/edamam-api/edamam-api.service';
 import { ActivatedRoute } from '@angular/router';
-import { Recipe } from 'src/app/models/recipe';
+import { Recipe } from 'src/app/models/recipe.interface';
 import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 
 @Component({

@@ -7,22 +7,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FavoritesPageComponent } from './components/favorites-page/favorites-page.component';
+import { FavoriteRecipesComponent } from './components/favorite-recipes/favorite-recipes.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
-import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
-import { SearchCriteriaComponent } from './components/search-criteria/search-criteria.component';
+import { RecipeSearchFormComponent } from './components/recipe-search-form/recipe-search-form.component';
+import { SearchResultsComponent } from './components/recipe-search-results/recipe-search-results.component';
 import { EdamamApiService } from './services/edamam-api/edamam-api.service';
 import { FavoritesService } from './services/favorites/favorites.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FavoritesPageComponent,
+    FavoriteRecipesComponent,
     HeaderComponent,
     RecipeDetailComponent,
-    RecipeListComponent,
-    SearchCriteriaComponent,
+    RecipeSearchFormComponent,
+    SearchResultsComponent,
   ],
   imports: [
     AppRoutingModule,

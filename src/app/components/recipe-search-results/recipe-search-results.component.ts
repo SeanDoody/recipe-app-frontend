@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { EdamamApiService } from 'src/app/services/edamam-api/edamam-api.service';
 import { Recipe } from 'src/app/models/recipe';
-import { SearchService } from 'src/app/services/search/search.service';
+import { EdamamApiService } from 'src/app/services/edamam-api/edamam-api.service';
 import { FavoritesService } from 'src/app/services/favorites/favorites.service';
+import { SearchService } from 'src/app/services/search/search.service';
 
 @Component({
-  selector: 'app-recipe-list',
-  templateUrl: './recipe-list.component.html',
-  styleUrls: ['./recipe-list.component.scss'],
+  selector: 'app-recipe-search-results',
+  templateUrl: './recipe-search-results.component.html',
+  styleUrls: ['./recipe-search-results.component.scss'],
 })
-export class RecipeListComponent implements OnInit {
+export class SearchResultsComponent implements OnInit {
   public recipeList: Recipe[] = [];
 
   constructor(

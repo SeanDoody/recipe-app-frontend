@@ -39,7 +39,7 @@ export class EdamamApiService {
     );
   }
 
-  public getRecipeByUri(recipeUri: string): Observable<Object> {
+  public getRecipeByUri(recipeUri: string): Observable<Recipe> {
     const source$ = this.httpClient.get(`${this.edamamUrl}/${recipeUri}`, {
       params: {
         app_id: this.appId,
@@ -48,6 +48,6 @@ export class EdamamApiService {
       },
     });
 
-    return source$;
+    return source$.pipe(map((result) => new Recipe('edamamApi', result)));
   }
 }

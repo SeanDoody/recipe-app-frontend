@@ -6,9 +6,14 @@ import { SearchEvent } from 'src/app/models/search-event';
   providedIn: 'root',
 })
 export class EdamamApiService {
-  appId: string = 'e553ac8f';
-  appKey: string = '4a65f97aed92762ca9818cfaef595dcf';
-  edamamUrl: string = 'https://api.edamam.com/api/recipes/v2';
+  // temporarily disable
+  appId: string = '';
+  appKey: string = '';
+  edamamUrl: string = '';
+
+  //   appId: string = 'e553ac8f';
+  //   appKey: string = '4a65f97aed92762ca9818cfaef595dcf';
+  //   edamamUrl: string = 'https://api.edamam.com/api/recipes/v2';
 
   constructor(private http: HttpClient) {}
 

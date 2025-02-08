@@ -56,19 +56,11 @@ button {
   }
 
   h1 {
-    font-size: 4rem;
-    line-height: 4rem;
+    font-size: 3.5rem;
+    line-height: 3.5rem;
     font-weight: 500;
     margin-right: 1rem;
     word-spacing: normal;
-  }
-
-  button {
-    transform: scale(2.5);
-
-    mat-icon {
-      opacity: 75%;
-    }
   }
 }
 

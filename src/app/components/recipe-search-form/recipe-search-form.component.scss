@@ -15,88 +15,11 @@ form {
   width: 100%;
 }
 
-.criteria-flex {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
+// mat-checkbox {
+//   transform: scale(1.5);
+// }
 
-label {
-  font-size: 1.5rem;
-}
-
-span {
-  display: none;
-}
-
-.keywords {
-  height: 2.5rem;
-  font-size: 1.5rem;
-  border: solid 0.2rem variables.$roulette-red;
-  border-radius: 0.7rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  margin-top: 0.2rem;
-  margin-bottom: 0.5rem;
-}
-
-.dish-type-parent {
-  overflow: hidden;
-  height: 2.5rem;
-  margin-top: 0.2rem;
-  margin-bottom: 0.7rem;
-  background-color: white;
-  border: solid 0.2rem variables.$roulette-red;
-  border-radius: 0.7rem;
-}
-
-.dish-type {
-  height: 100%;
-  width: 100%;
-  font-size: 1.5rem;
-}
-
-option {
-  padding-top: 0.1rem;
-  padding-bottom: 0.1rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
-
-.dietary-restrictions {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-  padding-left: 1.5rem;
-
-  div {
-    display: flex;
-    align-items: center;
-    margin-top: 0.5rem;
-  }
-
-  label {
-    font-size: 1.3rem;
-    padding-left: 0.5rem;
-  }
-}
-
-mat-checkbox {
-  transform: scale(1.5);
-}
-
-::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
-.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
-.mat-accent .mat-pseudo-checkbox-checked,
-.mat-accent .mat-pseudo-checkbox-indeterminate,
-.mat-pseudo-checkbox-checked,
-.mat-pseudo-checkbox-indeterminate {
-  background-color: green !important;
-}
-
-.wheel-flex {
+.wheel {
   display: flex;
   align-items: center;
   padding-left: 2.5rem;
@@ -143,16 +66,11 @@ mat-checkbox {
     padding-right: 15%;
   }
 
-  label {
-    font-size: 2rem;
-    margin-bottom: 0.3rem;
-  }
-
-  input,
-  select {
-    font-size: 2rem;
-    height: 3rem;
-  }
+  // input,
+  // select {
+  //   font-size: 2rem;
+  //   height: 3rem;
+  // }
 
   .keywords {
     font-size: 2rem;
@@ -173,24 +91,13 @@ mat-checkbox {
     width: 100%;
     padding-left: 1rem;
     padding-right: 1rem;
-
-    div {
-      margin-top: 0;
-    }
-
-    label {
-      padding: 0;
-      font-size: 1.6rem;
-      padding-left: 0.8rem;
-      padding-top: 0.5rem;
-    }
   }
 
   mat-checkbox {
     transform: scale(2);
   }
 
-  .wheel-flex {
+  .wheel {
     padding-left: 20%;
     padding-right: 20%;
 
@@ -261,17 +168,9 @@ mat-checkbox {
     flex-direction: column;
     justify-content: flex-start;
     width: 40%;
-
-    div {
-      margin-bottom: 1rem;
-    }
-
-    label {
-      font-size: 1.5rem;
-    }
   }
 
-  .wheel-flex {
+  .wheel {
     flex-direction: column-reverse;
     width: 25%;
     padding: 0;

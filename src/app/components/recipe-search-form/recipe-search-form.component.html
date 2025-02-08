@@ -1,70 +1,55 @@
 <h2>Recipe Search</h2>
 <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-  <div class="criteria-flex">
-    <label for="keywords">Keywords</label>
-    <input
-      [formControl]="searchForm.controls.keywords"
-      type="text"
-      class="keywords"
-    />
-    <label for="dish-type"
-      >Dish Type <span>*hold CTRL to select multiple options</span></label
+  <mat-form-field>
+    <mat-label>Keywords</mat-label>
+    <input [formControl]="searchForm.controls.keywords" matInput />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Dish Type</mat-label>
+    <mat-select
+      [formControl]="searchForm.controls.dishType"
+      class="dish-type"
+      multiple
     >
-    <div class="desktop-flex">
-      <div class="dish-type-parent">
-        <select
-          [formControl]="searchForm.controls.dishType"
-          class="dish-type"
-          multiple
-        >
-          <!-- To-Do: *ngFor loop through enum -->
-          <option value="Biscuits and cookies">Biscuits and cookies</option>
-          <option value="Bread">Bread</option>
-          <option value="Cereals">Cereals</option>
-          <option value="Condiments and sauces">Condiments and sauces</option>
-          <option value="Desserts">Desserts</option>
-          <option value="Drinks">Drinks</option>
-          <option value="Main course">Main courses</option>
-          <option value="Pancake">Pancakes</option>
-          <option value="Preps">Preps</option>
-          <option value="Preserve">Preserves</option>
-          <option value="Salad">Salad</option>
-          <option value="Sandwiches">Sandwiches</option>
-          <option value="Side dish">Side dishes</option>
-          <option value="Soup">Soups</option>
-          <option value="Starter">Starters</option>
-          <option value="Sweets">Sweets</option>
-        </select>
-      </div>
-      <label for="dietary-restrictions" class="dietary-restrictions-label"
-        >Dietary Restrictions</label
+      <!-- To-Do: @for loop through enum -->
+      <mat-option value="Biscuits and cookies">Biscuits and cookies</mat-option>
+      <mat-option value="Bread">Bread</mat-option>
+      <mat-option value="Cereals">Cereals</mat-option>
+      <mat-option value="Condiments and sauces"
+        >Condiments and sauces</mat-option
       >
-      <div class="dietary-restrictions">
-        <div>
-          <mat-checkbox
-            [formControl]="searchForm.controls.glutenFree"
-            class="gluten-free"
-          ></mat-checkbox>
-          <label for="gluten-free">Gluten-free</label>
-        </div>
-        <div>
-          <mat-checkbox
-            [formControl]="searchForm.controls.vegan"
-            class="vegan"
-          ></mat-checkbox>
-          <label for="vegan">Vegan</label>
-        </div>
-        <div>
-          <mat-checkbox
-            [formControl]="searchForm.controls.vegetarian"
-            class="vegetarian"
-          ></mat-checkbox>
-          <label for="vegetarian">Vegetarian</label>
-        </div>
-      </div>
-    </div>
+      <mat-option value="Desserts">Desserts</mat-option>
+      <mat-option value="Drinks">Drinks</mat-option>
+      <mat-option value="Main course">Main courses</mat-option>
+      <mat-option value="Pancake">Pancakes</mat-option>
+      <mat-option value="Preps">Preps</mat-option>
+      <mat-option value="Preserve">Preserves</mat-option>
+      <mat-option value="Salad">Salad</mat-option>
+      <mat-option value="Sandwiches">Sandwiches</mat-option>
+      <mat-option value="Side dish">Side dishes</mat-option>
+      <mat-option value="Soup">Soups</mat-option>
+      <mat-option value="Starter">Starters</mat-option>
+      <mat-option value="Sweets">Sweets</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="dietary-restrictions">
+    <mat-checkbox
+      [formControl]="searchForm.controls.glutenFree"
+      class="gluten-free"
+      >Gluten free</mat-checkbox
+    >
+    <mat-checkbox [formControl]="searchForm.controls.vegan" class="vegan"
+      >Vegan</mat-checkbox
+    >
+    <mat-checkbox
+      [formControl]="searchForm.controls.vegetarian"
+      class="vegetarian"
+      >Vegetarian</mat-checkbox
+    >
   </div>
-  <div class="wheel-flex">
+  <div class="wheel">
     <img
       (click)="onSubmit()"
       [ngClass]="spinWheel ? 'rotate' : ''"

@@ -14,13 +14,13 @@
       <a
         routerLink="/search"
         (click)="toggleNav()"
-        [ngClass]="{ active: this.currentRoute === '/search' }"
+        [ngClass]="{ active: currentRoute === '/search' }"
         >Search</a
       >
       <a
         routerLink="/favorites"
         (click)="toggleNav()"
-        [ngClass]="{ active: this.currentRoute === '/favorites' }"
+        [ngClass]="{ active: currentRoute === '/favorites' }"
         >Favorites</a
       >
     </nav>

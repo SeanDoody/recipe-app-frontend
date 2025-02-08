@@ -2,7 +2,6 @@
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 // mobile styling
-
 * {
   font-family: "Roboto Slab", serif;
   margin: 0;
@@ -117,7 +116,6 @@ a {
 }
 
 // tablet styling
-
 @media only screen and (min-width: variables.$tablet-breakpoint) {
   .recipe-parent {
     padding-bottom: 2rem;
@@ -180,7 +178,6 @@ a {
 }
 
 // desktop styling
-
 @media only screen and (min-width: variables.$desktop-breakpoint) {
   .recipe-parent {
     display: flex;

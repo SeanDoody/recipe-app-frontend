@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -15,26 +15,19 @@ import { SearchResultsComponent } from './components/recipe-search-results/recip
 import { EdamamApiService } from './services/edamam-api/edamam-api.service';
 import { FavoritesService } from './services/favorites/favorites.service';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    FavoriteRecipesComponent,
-    HeaderComponent,
-    RecipeDetailComponent,
-    RecipeSearchFormComponent,
-    SearchResultsComponent,
-  ],
-  imports: [
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    MatCheckboxModule,
-    MatIconModule,
-    ReactiveFormsModule,
-  ],
-  providers: [EdamamApiService, FavoritesService],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        FavoriteRecipesComponent,
+        HeaderComponent,
+        RecipeDetailComponent,
+        RecipeSearchFormComponent,
+        SearchResultsComponent,
+    ],
+    bootstrap: [AppComponent], imports: [AppRoutingModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+        FormsModule,
+        MatCheckboxModule,
+        MatIconModule,
+        ReactiveFormsModule], providers: [EdamamApiService, FavoritesService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {}

@@ -1,42 +1,44 @@
-<div class="parent">
-  <div class="name-parent">
-    <div class="text-parent">
-      <h2 class="recipe-name">{{ currentRecipe.name }}</h2>
-      <p class="recipe-source">
-        <a href="{{ currentRecipe.sourceUrl }}" target="_blank">{{
-          currentRecipe.sourceName
-        }}</a>
-      </p>
+<ng-container *ngIf="recipe$ | async as recipe">
+  <div class="parent">
+    <div class="name-parent">
+      <div class="text-parent">
+        <h2 class="recipe-name">{{ recipe.name }}</h2>
+        <p class="recipe-source">
+          <a href="{{ recipe.sourceUrl }}" target="_blank">{{
+            recipe.sourceName
+          }}</a>
+        </p>
+      </div>
+      <div class="icon-parent">
+        <mat-icon class="favorite-icon outer">lens</mat-icon>
+        <mat-icon
+          *ngIf="!isRecipeSaved(recipe.apiUri)"
+          (click)="addToFavorites(recipe)"
+          class="favorite-icon inner"
+          >favorite_border</mat-icon
+        >
+        <mat-icon
+          *ngIf="isRecipeSaved(recipe.apiUri)"
+          (click)="deleteFromFavorites(recipe)"
+          [ngClass]="isRecipeSaved(recipe.apiUri) ? 'grow-and-shrink' : ''"
+          class="favorite-icon inner"
+        >
+          favorite</mat-icon
+        >
+      </div>
     </div>
-    <div class="icon-parent">
-      <mat-icon class="favorite-icon outer">lens</mat-icon>
-      <mat-icon
-        *ngIf="!isRecipeSaved(currentRecipe.apiUri)"
-        (click)="addToFavorites(currentRecipe)"
-        class="favorite-icon inner"
-        >favorite_border</mat-icon
-      >
-      <mat-icon
-        *ngIf="isRecipeSaved(currentRecipe.apiUri)"
-        (click)="deleteFromFavorites(currentRecipe)"
-        [ngClass]="isRecipeSaved(currentRecipe.apiUri) ? 'grow-and-shrink' : ''"
-        class="favorite-icon inner"
-      >
-        favorite</mat-icon
-      >
+    <div class="content-parent">
+      <div class="picture-parent">
+        <img src="{{ recipe.imageUrl }}" alt="image" />
+      </div>
+      <div class="ingredients-parent">
+        <h3>Ingredients</h3>
+        <ul>
+          <li *ngFor="let ingredient of recipe.ingredients">
+            <span>{{ ingredient }}</span>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-  <div class="content-parent">
-    <div class="picture-parent">
-      <img src="{{ currentRecipe.imageUrl }}" alt="image" />
-    </div>
-    <div class="ingredients-parent">
-      <h3>Ingredients</h3>
-      <ul>
-        <li *ngFor="let ingredient of currentRecipe.ingredients">
-          <span>{{ ingredient }}</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
+</ng-container>

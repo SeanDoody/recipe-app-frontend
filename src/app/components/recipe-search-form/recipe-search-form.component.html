@@ -1,12 +1,11 @@
 <h2>Recipe Search</h2>
-<form (ngSubmit)="newSearch()">
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
   <div class="criteria-flex">
     <label for="keywords">Keywords</label>
     <input
-      [(ngModel)]="keywords"
+      [formControl]="searchForm.controls.keywords"
       type="text"
       class="keywords"
-      name="keywords"
     />
     <label for="dish-type"
       >Dish Type <span>*hold CTRL to select multiple options</span></label
@@ -14,11 +13,11 @@
     <div class="desktop-flex">
       <div class="dish-type-parent">
         <select
-          [(ngModel)]="dishType"
+          [formControl]="searchForm.controls.dishType"
           class="dish-type"
-          name="dish-type"
           multiple
         >
+          <!-- To-Do: *ngFor loop through enum -->
           <option value="Biscuits and cookies">Biscuits and cookies</option>
           <option value="Bread">Bread</option>
           <option value="Cereals">Cereals</option>
@@ -43,25 +42,22 @@
       <div class="dietary-restrictions">
         <div>
           <mat-checkbox
-            [(ngModel)]="glutenFree"
+            [formControl]="searchForm.controls.glutenFree"
             class="gluten-free"
-            name="gluten-free"
           ></mat-checkbox>
           <label for="gluten-free">Gluten-free</label>
         </div>
         <div>
           <mat-checkbox
-            [(ngModel)]="vegan"
+            [formControl]="searchForm.controls.vegan"
             class="vegan"
-            name="vegan"
           ></mat-checkbox>
           <label for="vegan">Vegan</label>
         </div>
         <div>
           <mat-checkbox
-            [(ngModel)]="vegetarian"
+            [formControl]="searchForm.controls.vegetarian"
             class="vegetarian"
-            name="vegetarian"
           ></mat-checkbox>
           <label for="vegetarian">Vegetarian</label>
         </div>
@@ -70,7 +66,7 @@
   </div>
   <div class="wheel-flex">
     <img
-      (click)="newSearch()"
+      (click)="onSubmit()"
       [ngClass]="spinWheel ? 'rotate' : ''"
       class="roulette-wheel"
       src="assets/images/roulette-wheel.png"

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from 'src/app/models/recipe';
+import { Recipe } from 'src/app/models/recipe.interface';
 import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 
 @Component({
-  selector: 'app-favorites-page',
-  templateUrl: './favorites-page.component.html',
-  styleUrls: ['./favorites-page.component.scss'],
+  selector: 'app-favorite-recipes',
+  templateUrl: './favorite-recipes.component.html',
+  styleUrls: ['./favorite-recipes.component.scss'],
 })
-export class FavoritesPageComponent implements OnInit {
+export class FavoriteRecipesComponent implements OnInit {
   public favoriteRecipes: Recipe[] = [];
   public noFavorites: boolean = true;
 

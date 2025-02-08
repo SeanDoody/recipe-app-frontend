@@ -3,10 +3,10 @@ import { Recipe } from 'src/app/models/recipe.interface';
 import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 
 @Component({
-    selector: 'app-favorite-recipes',
-    templateUrl: './favorite-recipes.component.html',
-    styleUrls: ['./favorite-recipes.component.scss'],
-    standalone: false
+  selector: 'app-favorite-recipes',
+  templateUrl: './favorite-recipes.component.html',
+  styleUrls: ['./favorite-recipes.component.scss'],
+  standalone: false,
 })
 export class FavoriteRecipesComponent implements OnInit {
   public favoriteRecipes: Recipe[] = [];

@@ -4,10 +4,10 @@ import { RecipeSearchForm } from 'src/app/models/recipe-search-form.interface';
 import { SearchEvent } from 'src/app/models/search-event.interface';
 
 @Component({
-    selector: 'app-recipe-search-form',
-    templateUrl: './recipe-search-form.component.html',
-    styleUrls: ['./recipe-search-form.component.scss'],
-    standalone: false
+  selector: 'app-recipe-search-form',
+  templateUrl: './recipe-search-form.component.html',
+  styleUrls: ['./recipe-search-form.component.scss'],
+  standalone: false,
 })
 export class RecipeSearchFormComponent {
   @Output() searchEvent = new EventEmitter<SearchEvent>();

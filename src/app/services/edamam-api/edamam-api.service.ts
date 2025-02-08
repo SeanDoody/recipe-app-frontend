@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Recipe } from 'src/app/models/recipe.interface';
 import { SearchEvent } from 'src/app/models/search-event.interface';
@@ -8,19 +8,14 @@ import { SearchEvent } from 'src/app/models/search-event.interface';
   providedIn: 'root',
 })
 export class EdamamApiService {
-  // temporarily disable
-  appId: string = '';
-  appKey: string = '';
-  edamamUrl: string = '';
+  private httpClient = inject(HttpClient);
 
-  //   appId: string = 'e553ac8f';
-  //   appKey: string = '4a65f97aed92762ca9818cfaef595dcf';
-  //   edamamUrl: string = 'https://api.edamam.com/api/recipes/v2';
-
-  constructor(private httpClient: HttpClient) {}
+  private appId = 'e553ac8f';
+  private appKey = process.env.EDAMAM_API_KEY ?? '';
+  private apiUrl = 'https://api.edamam.com/api/recipes/v2';
 
   public getRecipes(searchEvent: SearchEvent) {
-    const source$ = this.httpClient.get<any>(this.edamamUrl, {
+    const source$ = this.httpClient.get<any>(this.apiUrl, {
       params: {
         app_id: this.appId,
         app_key: this.appKey,
@@ -40,7 +35,7 @@ export class EdamamApiService {
   }
 
   public getRecipeByUri(recipeUri: string): Observable<Recipe> {
-    const source$ = this.httpClient.get(`${this.edamamUrl}/${recipeUri}`, {
+    const source$ = this.httpClient.get(`${this.apiUrl}/${recipeUri}`, {
       params: {
         app_id: this.appId,
         app_key: this.appKey,

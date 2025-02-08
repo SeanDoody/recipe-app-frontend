@@ -12,37 +12,35 @@
       <div class="icon-parent">
         <mat-icon class="favorite-icon outer">lens</mat-icon>
         @if (!isRecipeSaved(recipe.apiUri)) {
-          <mat-icon
-            (click)="addToFavorites(recipe)"
-            class="favorite-icon inner"
+          <mat-icon (click)="addToFavorites(recipe)" class="favorite-icon inner"
             >favorite_border</mat-icon
-            >
-          }
-          @if (isRecipeSaved(recipe.apiUri)) {
-            <mat-icon
-              (click)="deleteFromFavorites(recipe)"
-              [ngClass]="isRecipeSaved(recipe.apiUri) ? 'grow-and-shrink' : ''"
-              class="favorite-icon inner"
-              >
-              favorite</mat-icon
-              >
-            }
-          </div>
-        </div>
-        <div class="content-parent">
-          <div class="picture-parent">
-            <img src="{{ recipe.imageUrl }}" alt="image" />
-          </div>
-          <div class="ingredients-parent">
-            <h3>Ingredients</h3>
-            <ul>
-              @for (ingredient of recipe.ingredients; track ingredient) {
-                <li>
-                  <span>{{ ingredient }}</span>
-                </li>
-              }
-            </ul>
-          </div>
-        </div>
+          >
+        }
+        @if (isRecipeSaved(recipe.apiUri)) {
+          <mat-icon
+            (click)="deleteFromFavorites(recipe)"
+            [ngClass]="isRecipeSaved(recipe.apiUri) ? 'grow-and-shrink' : ''"
+            class="favorite-icon inner"
+          >
+            favorite</mat-icon
+          >
+        }
       </div>
-    }
+    </div>
+    <div class="content-parent">
+      <div class="picture-parent">
+        <img src="{{ recipe.imageUrl }}" alt="image" />
+      </div>
+      <div class="ingredients-parent">
+        <h3>Ingredients</h3>
+        <ul>
+          @for (ingredient of recipe.ingredients; track ingredient) {
+            <li>
+              <span>{{ ingredient }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+}

@@ -11,7 +11,7 @@ export class EdamamApiService {
   private httpClient = inject(HttpClient);
 
   private appId = 'e553ac8f';
-  private appKey = process.env.EDAMAM_API_KEY ?? '';
+  private appKey = '9c3ee177f88bade1db44bab948fdd0bc';
   private apiUrl = 'https://api.edamam.com/api/recipes/v2';
 
   public getRecipes(searchEvent: SearchEvent) {

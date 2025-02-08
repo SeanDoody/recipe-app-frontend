@@ -27,12 +27,7 @@
     </div>
 
     <div class="roulette-wheel">
-      <img
-        (click)="onSubmit()"
-        [ngClass]="spinWheel ? 'rotate' : ''"
-        src="assets/images/roulette-wheel.png"
-        alt="search button"
-      />
+      <button [ngClass]="spinWheel ? 'rotate' : ''">Search</button>
       <p>Spin the wheel for a random search!</p>
     </div>
   </form>

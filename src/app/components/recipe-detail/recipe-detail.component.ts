@@ -6,9 +6,10 @@ import { EdamamApiService } from 'src/app/services/edamam-api/edamam-api.service
 import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 
 @Component({
-  selector: 'app-recipe-detail',
-  templateUrl: './recipe-detail.component.html',
-  styleUrls: ['./recipe-detail.component.scss'],
+    selector: 'app-recipe-detail',
+    templateUrl: './recipe-detail.component.html',
+    styleUrls: ['./recipe-detail.component.scss'],
+    standalone: false
 })
 export class RecipeDetailComponent {
   private apiUri: string;

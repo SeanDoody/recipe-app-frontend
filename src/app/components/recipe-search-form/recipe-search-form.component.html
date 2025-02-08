@@ -1,65 +1,42 @@
-<h2>Recipe Search</h2>
-<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-  <mat-form-field>
-    <mat-label>Keywords</mat-label>
-    <input [formControl]="searchForm.controls.keywords" matInput />
-  </mat-form-field>
+<div class="parent">
+  <h2>Recipe Search</h2>
 
-  <mat-form-field>
-    <mat-label>Dish Type</mat-label>
-    <mat-select
-      [formControl]="searchForm.controls.dishType"
-      class="dish-type"
-      multiple
-    >
-      <!-- To-Do: @for loop through enum -->
-      <mat-option value="Biscuits and cookies">Biscuits and cookies</mat-option>
-      <mat-option value="Bread">Bread</mat-option>
-      <mat-option value="Cereals">Cereals</mat-option>
-      <mat-option value="Condiments and sauces"
-        >Condiments and sauces</mat-option
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Keywords</mat-label>
+      <input [formControl]="form.controls.keywords" matInput />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Dish Type</mat-label>
+      <mat-select [formControl]="form.controls.dishType" multiple>
+        @for (dishType of DishType | keyvalue; track dishType) {
+          <mat-option [value]="dishType.value">{{ dishType.value }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <div class="dietary-restrictions">
+      <mat-checkbox [formControl]="form.controls.glutenFree"
+        >Gluten-free</mat-checkbox
       >
-      <mat-option value="Desserts">Desserts</mat-option>
-      <mat-option value="Drinks">Drinks</mat-option>
-      <mat-option value="Main course">Main courses</mat-option>
-      <mat-option value="Pancake">Pancakes</mat-option>
-      <mat-option value="Preps">Preps</mat-option>
-      <mat-option value="Preserve">Preserves</mat-option>
-      <mat-option value="Salad">Salad</mat-option>
-      <mat-option value="Sandwiches">Sandwiches</mat-option>
-      <mat-option value="Side dish">Side dishes</mat-option>
-      <mat-option value="Soup">Soups</mat-option>
-      <mat-option value="Starter">Starters</mat-option>
-      <mat-option value="Sweets">Sweets</mat-option>
-    </mat-select>
-  </mat-form-field>
+      <mat-checkbox [formControl]="form.controls.vegan">Vegan</mat-checkbox>
+      <mat-checkbox [formControl]="form.controls.vegetarian"
+        >Vegetarian</mat-checkbox
+      >
+    </div>
 
-  <div class="dietary-restrictions">
-    <mat-checkbox
-      [formControl]="searchForm.controls.glutenFree"
-      class="gluten-free"
-      >Gluten free</mat-checkbox
-    >
-    <mat-checkbox [formControl]="searchForm.controls.vegan" class="vegan"
-      >Vegan</mat-checkbox
-    >
-    <mat-checkbox
-      [formControl]="searchForm.controls.vegetarian"
-      class="vegetarian"
-      >Vegetarian</mat-checkbox
-    >
-  </div>
-  <div class="wheel">
-    <img
-      (click)="onSubmit()"
-      [ngClass]="spinWheel ? 'rotate' : ''"
-      class="roulette-wheel"
-      src="assets/images/roulette-wheel.png"
-      alt="search button"
-    />
-    <p>Spin the wheel for a random search!</p>
-  </div>
-</form>
+    <div class="roulette-wheel">
+      <img
+        (click)="onSubmit()"
+        [ngClass]="spinWheel ? 'rotate' : ''"
+        src="assets/images/roulette-wheel.png"
+        alt="search button"
+      />
+      <p>Spin the wheel for a random search!</p>
+    </div>
+  </form>
+</div>
 
 <!-- style icons PNG Designed By Ylivdesign from https://pngtree.com/freepng/casino-gambling-roulette-icon-flat-style_5252282.html?sol=downref&class=bef -->
 <!-- <a href='https://pngtree.com/so/casino'>casino png from pngtree.com/</a> -->

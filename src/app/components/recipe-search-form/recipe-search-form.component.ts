@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { DishType } from 'src/app/models/dish-type.enum';
 import { RecipeSearchForm } from 'src/app/models/recipe-search-form.interface';
 import { SearchEvent } from 'src/app/models/search-event.interface';
 
@@ -10,9 +11,11 @@ import { SearchEvent } from 'src/app/models/search-event.interface';
   standalone: false,
 })
 export class RecipeSearchFormComponent {
+  public readonly DishType = DishType;
+
   @Output() searchEvent = new EventEmitter<SearchEvent>();
 
-  public searchForm = new FormGroup<RecipeSearchForm>({
+  public form = new FormGroup<RecipeSearchForm>({
     keywords: new FormControl(),
     dishType: new FormControl(),
     glutenFree: new FormControl(),
@@ -22,7 +25,7 @@ export class RecipeSearchFormComponent {
   public spinWheel: boolean = false;
 
   public onSubmit(): void {
-    const formValue = this.searchForm.value;
+    const formValue = this.form.value;
     const dietaryRestrictions = [];
 
     if (formValue.glutenFree) {

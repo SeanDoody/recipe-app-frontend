@@ -51,6 +51,10 @@ import { FavoritesService } from './services/favorites/favorites.service';
     EdamamApiService,
     FavoritesService,
     provideHttpClient(withInterceptorsFromDi()),
+    // {
+    //   provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+    //   useValue: { appearance: 'outline' },
+    // },
   ],
 })
 export class AppModule {}

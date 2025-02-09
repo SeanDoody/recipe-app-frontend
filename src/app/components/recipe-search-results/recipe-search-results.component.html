@@ -1,49 +1,91 @@
-<app-recipe-search-form
-  (searchEvent)="onSearch($event)"
-></app-recipe-search-form>
+@if (viewModel$ | async; as vm) {
+  <div class="parent">
+    <h2>Recipe Search</h2>
 
-<div class="recipe-parent">
-  @if (recipes$ | async; as recipes) {
-    @for (recipe of recipes; track recipe) {
-      <div class="recipe">
-        <div class="recipe-image-parent">
-          <img
-            [routerLink]="['/search', recipe.apiUri]"
-            src="{{ recipe.imageUrl }}"
-            alt="image"
-            class="recipe-image"
-          />
-          <mat-icon class="recipe-icon outer">lens</mat-icon>
-          @if (!isRecipeSaved(recipe.apiUri)) {
-            <mat-icon
-              (click)="addToFavorites(recipe)"
-              class="recipe-icon inner"
-            >
-              favorite_border</mat-icon
-            >
+    <form [formGroup]="searchForm" (ngSubmit)="formSubmit.next()">
+      <mat-form-field>
+        <mat-label>Keywords</mat-label>
+        <input [formControl]="searchForm.controls.keywords" matInput />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Dish Type</mat-label>
+        <mat-select [formControl]="searchForm.controls.dishType" multiple>
+          @for (dishType of DishType | keyvalue; track dishType) {
+            <mat-option [value]="dishType.value">{{
+              dishType.value
+            }}</mat-option>
           }
-          @if (isRecipeSaved(recipe.apiUri)) {
-            <mat-icon
-              (click)="deleteFromFavorites(recipe)"
-              [ngClass]="isRecipeSaved(recipe.apiUri) ? 'grow-and-shrink' : ''"
-              class="recipe-icon inner"
-              >favorite</mat-icon
-            >
-          }
-        </div>
-        <div class="recipe-text-parent">
-          <h3 class="recipe-name">
-            <a [routerLink]="['/search', recipe.apiUri]">
-              {{ recipe.name }}
-            </a>
-          </h3>
-          <p class="recipe-source">
-            <a href="{{ recipe.sourceUrl }}" target="_blank">{{
-              recipe.sourceName
-            }}</a>
-          </p>
-        </div>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="dietary-restrictions">
+        <mat-checkbox [formControl]="searchForm.controls.glutenFree"
+          >Gluten-free</mat-checkbox
+        >
+        <mat-checkbox [formControl]="searchForm.controls.vegan"
+          >Vegan</mat-checkbox
+        >
+        <mat-checkbox [formControl]="searchForm.controls.vegetarian"
+          >Vegetarian</mat-checkbox
+        >
       </div>
+
+      <div class="roulette-wheel">
+        <button [ngClass]="vm.spinWheel ? 'rotate' : ''">Search</button>
+        <p>Spin the wheel for a random search!</p>
+      </div>
+    </form>
+  </div>
+
+  <div class="recipe-parent">
+    @if (vm.recipes; as recipes) {
+      @for (recipe of recipes; track recipe) {
+        <div class="recipe">
+          <div class="recipe-image-parent">
+            <img
+              [routerLink]="['/search', recipe.apiUri]"
+              src="{{ recipe.imageUrl }}"
+              alt="image"
+              class="recipe-image"
+            />
+            <mat-icon class="recipe-icon outer">lens</mat-icon>
+            @if (!isRecipeSaved(recipe.apiUri)) {
+              <mat-icon
+                (click)="addToFavorites(recipe)"
+                class="recipe-icon inner"
+              >
+                favorite_border</mat-icon
+              >
+            }
+            @if (isRecipeSaved(recipe.apiUri)) {
+              <mat-icon
+                (click)="deleteFromFavorites(recipe)"
+                [ngClass]="
+                  isRecipeSaved(recipe.apiUri) ? 'grow-and-shrink' : ''
+                "
+                class="recipe-icon inner"
+                >favorite</mat-icon
+              >
+            }
+          </div>
+          <div class="recipe-text-parent">
+            <h3 class="recipe-name">
+              <a [routerLink]="['/search', recipe.apiUri]">
+                {{ recipe.name }}
+              </a>
+            </h3>
+            <p class="recipe-source">
+              <a href="{{ recipe.sourceUrl }}" target="_blank">{{
+                recipe.sourceName
+              }}</a>
+            </p>
+          </div>
+        </div>
+      }
     }
-  }
-</div>
+  </div>
+}
+
+<!-- style icons PNG Designed By Ylivdesign from https://pngtree.com/freepng/casino-gambling-roulette-icon-flat-style_5252282.html?sol=downref&class=bef -->
+<!-- <a href='https://pngtree.com/so/casino'>casino png from pngtree.com/</a> -->

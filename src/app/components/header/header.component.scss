@@ -25,34 +25,21 @@ h1 {
   line-height: 2.5rem;
   color: variables.$roulette-red;
   font-weight: 500;
+  word-spacing: 9999px;
 }
 
-mat-icon {
-  transform: scale(2);
-  color: variables.$roulette-red;
+button {
   margin: 1rem;
-  opacity: 50%;
-  font-weight: 600;
+  transform: scale(2);
+
+  mat-icon {
+    color: variables.$roulette-red;
+    opacity: 50%;
+    font-weight: 600;
+  }
 }
 
-nav {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 3.5rem;
-  right: 0;
-  background-color: variables.$roulette-green;
-  border: solid 0.1rem variables.$roulette-red;
-  padding: 0.5rem;
-}
-
-a {
-  font-size: 1.5rem;
-  color: variables.$roulette-red;
-  text-decoration: none;
-}
-
-.active {
+.active-link {
   text-decoration: underline;
 }
 
@@ -69,37 +56,17 @@ a {
   }
 
   h1 {
-    font-size: 4rem;
-    line-height: 4rem;
+    font-size: 3.5rem;
+    line-height: 3.5rem;
     font-weight: 500;
     margin-right: 1rem;
-  }
-
-  mat-icon {
-    transform: scale(2.5);
-    opacity: 75%;
-  }
-
-  nav {
-    top: 6rem;
-    background-color: variables.$roulette-green;
-    border: solid 0.1rem variables.$roulette-red;
-    padding: 0.5rem;
-  }
-
-  a {
-    font-size: 2.5rem;
+    word-spacing: 1rem;
   }
 }
 
 // desktop styling
 
 @media only screen and (min-width: variables.$desktop-breakpoint) {
-  header {
-    padding-left: 2rem;
-    padding-right: 2.5rem;
-  }
-
   div {
     align-items: center;
   }
@@ -125,21 +92,5 @@ a {
     to {
       transform: rotate(360deg);
     }
-  }
-
-  mat-icon {
-    display: none;
-  }
-
-  nav {
-    flex-direction: row;
-    position: static;
-    border: 0;
-    padding: 0;
-  }
-
-  a {
-    font-size: 2rem;
-    margin-left: 1rem;
   }
 }

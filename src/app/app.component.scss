@@ -1,1 +1,17 @@
 @use "src/variables";
+
+// mobile styling
+main {
+  padding: 1rem;
+}
+
+// tablet styling
+@media only screen and (min-width: variables.$tablet-breakpoint) {
+  main {
+    padding: 2rem;
+  }
+}
+
+// desktop styling
+// @media only screen and (min-width: variables.$desktop-breakpoint) {
+// }

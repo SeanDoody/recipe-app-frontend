@@ -5,22 +5,17 @@
       alt="roulette wheel"
       class="infinite-rotate"
     />
-    <h1>Recipe</h1>
-    <h1>Roulette!</h1>
+    <h1>Recipe Roulette!</h1>
   </div>
-  <mat-icon (click)="toggleNav()">menu</mat-icon>
-  <nav *ngIf="showNav">
-    <a
-      routerLink="/search"
-      (click)="toggleNav()"
-      [ngClass]="{ active: this.currentRoute === '/search' }"
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <a mat-menu-item routerLink="/search" routerLinkActive="active-link"
       >Search</a
     >
-    <a
-      routerLink="/favorites"
-      (click)="toggleNav()"
-      [ngClass]="{ active: this.currentRoute === '/favorites' }"
+    <a mat-menu-item routerLink="/favorites" routerLinkActive="active-link"
       >Favorites</a
     >
-  </nav>
+  </mat-menu>
 </header>

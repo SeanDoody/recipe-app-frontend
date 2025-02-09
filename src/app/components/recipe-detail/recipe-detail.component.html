@@ -1,4 +1,4 @@
-<ng-container *ngIf="recipe$ | async as recipe">
+@if (recipe$ | async; as recipe) {
   <div class="parent">
     <div class="name-parent">
       <div class="text-parent">
@@ -11,20 +11,20 @@
       </div>
       <div class="icon-parent">
         <mat-icon class="favorite-icon outer">lens</mat-icon>
-        <mat-icon
-          *ngIf="!isRecipeSaved(recipe.apiUri)"
-          (click)="addToFavorites(recipe)"
-          class="favorite-icon inner"
-          >favorite_border</mat-icon
-        >
-        <mat-icon
-          *ngIf="isRecipeSaved(recipe.apiUri)"
-          (click)="deleteFromFavorites(recipe)"
-          [ngClass]="isRecipeSaved(recipe.apiUri) ? 'grow-and-shrink' : ''"
-          class="favorite-icon inner"
-        >
-          favorite</mat-icon
-        >
+        @if (!isRecipeSaved(recipe.apiUri)) {
+          <mat-icon (click)="addToFavorites(recipe)" class="favorite-icon inner"
+            >favorite_border</mat-icon
+          >
+        }
+        @if (isRecipeSaved(recipe.apiUri)) {
+          <mat-icon
+            (click)="deleteFromFavorites(recipe)"
+            [ngClass]="isRecipeSaved(recipe.apiUri) ? 'grow-and-shrink' : ''"
+            class="favorite-icon inner"
+          >
+            favorite</mat-icon
+          >
+        }
       </div>
     </div>
     <div class="content-parent">
@@ -34,11 +34,13 @@
       <div class="ingredients-parent">
         <h3>Ingredients</h3>
         <ul>
-          <li *ngFor="let ingredient of recipe.ingredients">
-            <span>{{ ingredient }}</span>
-          </li>
+          @for (ingredient of recipe.ingredients; track ingredient) {
+            <li>
+              <span>{{ ingredient }}</span>
+            </li>
+          }
         </ul>
       </div>
     </div>
   </div>
-</ng-container>
+}

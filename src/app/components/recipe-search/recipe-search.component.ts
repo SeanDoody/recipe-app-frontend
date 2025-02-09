@@ -18,12 +18,12 @@ import { EdamamApiService } from 'src/app/services/edamam-api/edamam-api.service
 import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 
 @Component({
-  selector: 'app-recipe-search-results',
-  templateUrl: './recipe-search-results.component.html',
-  styleUrls: ['./recipe-search-results.component.scss'],
+  selector: 'app-recipe-search',
+  templateUrl: './recipe-search.component.html',
+  styleUrls: ['./recipe-search.component.scss'],
   standalone: false,
 })
-export class SearchResultsComponent {
+export class RecipeSearchComponent {
   private edamamApiService = inject(EdamamApiService);
   private favoritesService = inject(FavoritesService);
 

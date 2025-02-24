@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe.interface';
-import { FavoritesService } from 'src/app/services/favorites/favorites.service';
+import { FavoriteRecipesService } from 'src/app/services/favorite-recipes/favorite-recipes.service';
 
 @Component({
   selector: 'app-favorite-recipes',
@@ -8,23 +8,12 @@ import { FavoritesService } from 'src/app/services/favorites/favorites.service';
   styleUrls: ['./favorite-recipes.component.scss'],
   standalone: false,
 })
-export class FavoriteRecipesComponent implements OnInit {
-  public favoriteRecipes: Recipe[] = [];
-  public noFavorites: boolean = true;
+export class FavoriteRecipesComponent {
+  private favoriteRecipesService = inject(FavoriteRecipesService);
 
-  constructor(private favoritesService: FavoritesService) {}
-
-  ngOnInit(): void {
-    this.getFavorites();
-  }
-
-  private getFavorites(): void {
-    this.favoriteRecipes = this.favoritesService.getFavorites();
-    this.noFavorites = this.favoriteRecipes.length === 0;
-  }
+  public favoriteRecipes = this.favoriteRecipesService.favoriteRecipes;
 
   public deleteFromFavorites(recipe: Recipe): void {
-    this.favoritesService.deleteFromFavorites(recipe);
-    this.getFavorites();
+    this.favoriteRecipesService.deleteFromFavorites(recipe);
   }
 }

@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Recipe } from 'src/app/models/recipe.interface';
 import { EdamamApiService } from 'src/app/services/edamam-api/edamam-api.service';
-import { FavoritesService } from 'src/app/services/favorites/favorites.service';
+import { FavoriteRecipesService } from 'src/app/services/favorite-recipes/favorite-recipes.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -12,27 +12,24 @@ import { FavoritesService } from 'src/app/services/favorites/favorites.service';
   standalone: false,
 })
 export class RecipeDetailComponent {
-  private apiUri: string;
-  public recipe$: Observable<Recipe>;
+  private edamamApiService = inject(EdamamApiService);
+  private favoriteRecipesService = inject(FavoriteRecipesService);
+  private route = inject(ActivatedRoute);
 
-  constructor(
-    private edamamApiService: EdamamApiService,
-    private favoritesService: FavoritesService,
-    private route: ActivatedRoute
-  ) {
-    this.apiUri = this.route.snapshot.params.apiUri;
-    this.recipe$ = this.edamamApiService.getRecipeByUri(this.apiUri);
-  }
+  private apiUri: string = this.route.snapshot.params.apiUri;
+  public recipe$: Observable<Recipe> = this.edamamApiService.getRecipeByUri(
+    this.apiUri,
+  );
 
   public isRecipeSaved(apiUri: string): boolean {
-    return this.favoritesService.isRecipeSaved(apiUri);
+    return this.favoriteRecipesService.isRecipeSaved(apiUri);
   }
 
-  public addToFavorites(recipe: Recipe) {
-    this.favoritesService.addToFavorites(recipe);
+  public addToFavorites(recipe: Recipe): void {
+    this.favoriteRecipesService.addToFavorites(recipe);
   }
 
-  public deleteFromFavorites(recipe: Recipe) {
-    this.favoritesService.deleteFromFavorites(recipe);
+  public deleteFromFavorites(recipe: Recipe): void {
+    this.favoriteRecipesService.deleteFromFavorites(recipe);
   }
 }

@@ -1,36 +1,48 @@
-@if (noFavorites) {
+@if (favoriteRecipes().length > 0) {
+  <div class="recipe-parent">
+    @for (
+      recipe of favoriteRecipes();
+      track [
+        recipe.apiUri,
+        recipe.imageUrl,
+        recipe.name,
+        recipe.sourceName,
+        recipe.sourceUrl,
+      ]
+    ) {
+      <div class="recipe">
+        <div class="recipe-image-parent">
+          <img
+            [routerLink]="['/search', recipe.apiUri]"
+            src="{{ recipe.imageUrl }}"
+            alt="image"
+            class="recipe-image"
+          />
+          <mat-icon class="recipe-icon outer">lens</mat-icon>
+          <mat-icon
+            (click)="deleteFromFavorites(recipe)"
+            class="recipe-icon inner"
+            >delete</mat-icon
+          >
+        </div>
+        <div class="recipe-text-parent">
+          <h3 class="recipe-name">
+            <a [routerLink]="['/search', recipe.apiUri]">
+              {{ recipe.name }}
+            </a>
+          </h3>
+          <p class="recipe-source">
+            <a href="{{ recipe.sourceUrl }}" target="_blank">{{
+              recipe.sourceName
+            }}</a>
+          </p>
+        </div>
+      </div>
+    }
+  </div>
+} @else {
   <p class="no-fav-msg">
     No favorites saved! Click <a routerLink="/search">here</a> to search for
     recipes.
   </p>
 }
-<div class="recipe-parent">
-  @for (recipe of favoriteRecipes; track recipe) {
-    <div class="recipe">
-      <div class="recipe-image-parent">
-        <img
-          [routerLink]="['/search', recipe.apiUri]"
-          src="{{ recipe.imageUrl }}"
-          alt="image"
-          class="recipe-image"
-          />
-          <mat-icon class="recipe-icon outer">lens</mat-icon>
-          <mat-icon (click)="deleteFromFavorites(recipe)" class="recipe-icon inner"
-            >delete</mat-icon
-            >
-          </div>
-          <div class="recipe-text-parent">
-            <h3 class="recipe-name">
-              <a [routerLink]="['/search', recipe.apiUri]">
-                {{ recipe.name }}
-              </a>
-            </h3>
-            <p class="recipe-source">
-              <a href="{{ recipe.sourceUrl }}" target="_blank">{{
-                recipe.sourceName
-              }}</a>
-            </p>
-          </div>
-        </div>
-      }
-    </div>

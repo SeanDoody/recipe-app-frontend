@@ -1,35 +1,37 @@
-import { Injectable } from '@angular/core';
+import { effect, Injectable, signal } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FavoriteRecipesService {
-  private favoriteRecipes: Recipe[];
+  private favoriteRecipesSignal = signal(
+    this.getFavoriteRecipesFromLocalStorage(),
+  );
+
+  public favoriteRecipes = this.favoriteRecipesSignal.asReadonly();
 
   constructor() {
-    const favoriteRecipes = localStorage.getItem('favoriteRecipes');
-    if (favoriteRecipes) {
-      this.favoriteRecipes = JSON.parse(favoriteRecipes);
-    } else {
-      this.favoriteRecipes = [];
+    effect(() => {
+      const favoriteRecipes = this.favoriteRecipesSignal();
+      console.log('favorites updated');
+      console.log(favoriteRecipes);
+      localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
+    });
+  }
+
+  private getFavoriteRecipesFromLocalStorage(): Recipe[] {
+    let favoriteRecipes: Recipe[] = [];
+    const favoriteRecipesLocalStorage = localStorage.getItem('favoriteRecipes');
+    if (favoriteRecipesLocalStorage) {
+      favoriteRecipes = JSON.parse(favoriteRecipesLocalStorage);
     }
-  }
-
-  private setFavorites(): void {
-    localStorage.setItem(
-      'favoriteRecipes',
-      JSON.stringify(this.favoriteRecipes),
-    );
-  }
-
-  public getFavorites(): Recipe[] {
-    return this.favoriteRecipes;
+    return favoriteRecipes;
   }
 
   public isRecipeSaved(apiUri: string): boolean {
     let recipeSaved: boolean = false;
-    for (let recipe of this.favoriteRecipes) {
+    for (let recipe of this.favoriteRecipesSignal()) {
       if (recipe.apiUri === apiUri) {
         recipeSaved = true;
         break;
@@ -38,19 +40,16 @@ export class FavoriteRecipesService {
     return recipeSaved;
   }
 
-  public addToFavorites(recipe: Recipe): void {
-    this.favoriteRecipes.push(recipe);
-    this.setFavorites();
+  public addToFavorites(newRecipe: Recipe): void {
+    this.favoriteRecipesSignal.update((favoriteRecipes) => [
+      ...favoriteRecipes,
+      newRecipe,
+    ]);
   }
 
-  public deleteFromFavorites(recipe: Recipe): void {
-    const index = this.favoriteRecipes.findIndex(
-      (r) => r.apiUri === recipe.apiUri,
+  public deleteFromFavorites(recipeToDelete: Recipe): void {
+    this.favoriteRecipesSignal.update((favoriteRecipes) =>
+      favoriteRecipes.filter((recipe) => recipe !== recipeToDelete),
     );
-
-    if (index >= 0) {
-      this.favoriteRecipes.splice(index, 1);
-      this.setFavorites();
-    }
   }
 }

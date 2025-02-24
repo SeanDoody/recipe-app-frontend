@@ -15,7 +15,7 @@ import { RecipeSearchForm } from 'src/app/models/recipe-search-form.interface';
 import { Recipe } from 'src/app/models/recipe.interface';
 import { SearchEvent } from 'src/app/models/search-event.interface';
 import { EdamamApiService } from 'src/app/services/edamam-api/edamam-api.service';
-import { FavoritesService } from 'src/app/services/favorites/favorites.service';
+import { FavoriteRecipesService } from 'src/app/services/favorite-recipes/favorite-recipes.service';
 
 @Component({
   selector: 'app-recipe-search',
@@ -25,7 +25,7 @@ import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 })
 export class RecipeSearchComponent {
   private edamamApiService = inject(EdamamApiService);
-  private favoritesService = inject(FavoritesService);
+  private favoriteRecipesService = inject(FavoriteRecipesService);
 
   public readonly DishType = DishType;
 
@@ -96,14 +96,14 @@ export class RecipeSearchComponent {
   );
 
   public isRecipeSaved(apiUri: string): boolean {
-    return this.favoritesService.isRecipeSaved(apiUri);
+    return this.favoriteRecipesService.isRecipeSaved(apiUri);
   }
 
   public addToFavorites(recipe: Recipe): void {
-    this.favoritesService.addToFavorites(recipe);
+    this.favoriteRecipesService.addToFavorites(recipe);
   }
 
   public deleteFromFavorites(recipe: Recipe): void {
-    this.favoritesService.deleteFromFavorites(recipe);
+    this.favoriteRecipesService.deleteFromFavorites(recipe);
   }
 }

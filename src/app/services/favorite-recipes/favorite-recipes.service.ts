@@ -4,7 +4,7 @@ import { Recipe } from 'src/app/models/recipe.interface';
 @Injectable({
   providedIn: 'root',
 })
-export class FavoritesService {
+export class FavoriteRecipesService {
   private favoriteRecipes: Recipe[];
 
   constructor() {
@@ -19,7 +19,7 @@ export class FavoritesService {
   private setFavorites(): void {
     localStorage.setItem(
       'favoriteRecipes',
-      JSON.stringify(this.favoriteRecipes)
+      JSON.stringify(this.favoriteRecipes),
     );
   }
 
@@ -45,7 +45,7 @@ export class FavoritesService {
 
   public deleteFromFavorites(recipe: Recipe): void {
     const index = this.favoriteRecipes.findIndex(
-      (r) => r.apiUri === recipe.apiUri
+      (r) => r.apiUri === recipe.apiUri,
     );
 
     if (index >= 0) {

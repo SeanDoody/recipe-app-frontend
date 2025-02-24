@@ -19,8 +19,6 @@ import { FavoriteRecipesComponent } from './components/favorite-recipes/favorite
 import { HeaderComponent } from './components/header/header.component';
 import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
 import { RecipeSearchComponent } from './components/recipe-search/recipe-search.component';
-import { EdamamApiService } from './services/edamam-api/edamam-api.service';
-import { FavoritesService } from './services/favorites/favorites.service';
 
 @NgModule({
   declarations: [
@@ -46,8 +44,6 @@ import { FavoritesService } from './services/favorites/favorites.service';
     ReactiveFormsModule,
   ],
   providers: [
-    EdamamApiService,
-    FavoritesService,
     provideHttpClient(withInterceptorsFromDi()),
     // {
     //   provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,

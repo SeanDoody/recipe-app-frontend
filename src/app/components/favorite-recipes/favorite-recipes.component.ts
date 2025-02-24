@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe.interface';
-import { FavoritesService } from 'src/app/services/favorites/favorites.service';
+import { FavoriteRecipesService } from 'src/app/services/favorite-recipes/favorite-recipes.service';
 
 @Component({
   selector: 'app-favorite-recipes',
@@ -12,19 +12,19 @@ export class FavoriteRecipesComponent implements OnInit {
   public favoriteRecipes: Recipe[] = [];
   public noFavorites: boolean = true;
 
-  constructor(private favoritesService: FavoritesService) {}
+  constructor(private favoriteRecipesService: FavoriteRecipesService) {}
 
   ngOnInit(): void {
     this.getFavorites();
   }
 
   private getFavorites(): void {
-    this.favoriteRecipes = this.favoritesService.getFavorites();
+    this.favoriteRecipes = this.favoriteRecipesService.getFavorites();
     this.noFavorites = this.favoriteRecipes.length === 0;
   }
 
   public deleteFromFavorites(recipe: Recipe): void {
-    this.favoritesService.deleteFromFavorites(recipe);
+    this.favoriteRecipesService.deleteFromFavorites(recipe);
     this.getFavorites();
   }
 }

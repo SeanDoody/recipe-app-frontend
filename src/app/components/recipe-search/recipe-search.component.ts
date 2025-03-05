@@ -1,8 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup } from '@angular/forms';
 import {
-  BehaviorSubject,
-  combineLatest,
+  catchError,
+  delay,
+  filter,
   map,
   of,
   startWith,
@@ -29,7 +31,7 @@ export class RecipeSearchComponent {
 
   public readonly DishType = DishType;
 
-  public spinWheel = new BehaviorSubject<boolean>(false);
+  public spinWheel = signal(false);
 
   public searchForm = new FormGroup<RecipeSearchForm>({
     keywords: new FormControl(),
@@ -65,7 +67,7 @@ export class RecipeSearchComponent {
         alert('At least one criteria must be chosen to search.');
         return null;
       } else {
-        this.spinWheel.next(true);
+        this.spinWheel.set(true);
         const newEvent: SearchEvent = {
           keywords: formValue.keywords ?? '',
           dishType: formValue.dishType ?? [],
@@ -74,26 +76,26 @@ export class RecipeSearchComponent {
         return newEvent;
       }
     }),
-    tap(() =>
-      setTimeout(() => {
-        this.spinWheel.next(false);
-      }, 1000),
-    ),
+    delay(1000),
+    tap(() => this.spinWheel.set(false)),
   );
 
-  public recipes$ = this.searchEvent$.pipe(
-    switchMap((searchEvent) => {
-      if (searchEvent) {
-        return this.edamamApiService.getRecipes(searchEvent);
-      }
-      return of(null);
-    }),
+  private recipes$ = this.searchEvent$.pipe(
+    filter((searchEvent) => !!searchEvent),
+    tap(() => this.spinWheel.set(true)),
+    switchMap((searchEvent) =>
+      this.edamamApiService.getRecipes(searchEvent).pipe(
+        catchError((error) => {
+          console.error(error);
+          return of(null);
+        }),
+        tap(() => this.spinWheel.set(false)),
+      ),
+    ),
     startWith(null),
   );
 
-  public viewModel$ = combineLatest([this.spinWheel, this.recipes$]).pipe(
-    map(([spinWheel, recipes]) => ({ spinWheel, recipes })),
-  );
+  public recipes = toSignal(this.recipes$);
 
   public isRecipeSaved(apiUri: string): boolean {
     return this.favoriteRecipesService.isRecipeSaved(apiUri);

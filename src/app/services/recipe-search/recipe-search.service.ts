@@ -1,6 +1,17 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { inject, Injectable, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import {
+  catchError,
+  map,
+  Observable,
+  of,
+  shareReplay,
+  Subject,
+  switchMap,
+  tap,
+} from 'rxjs';
+import { RecipeSearch } from 'src/app/models/recipe-search.interface';
 import { Recipe } from 'src/app/models/recipe.interface';
 import { SearchEvent } from 'src/app/models/search-event.interface';
 
@@ -18,6 +29,51 @@ export class RecipeSearchService {
     'Content-Type': 'application/json',
     'Edamam-Account-User': 'sdoody95',
   });
+
+  public recipeSearch$ = new Subject<RecipeSearch>();
+
+  private searchEvent$ = this.recipeSearch$.pipe(
+    map((search) => {
+      const dietaryRestrictions: string[] = [];
+
+      if (search.glutenFree) {
+        dietaryRestrictions.push('gluten-free');
+      }
+      if (search.vegan) {
+        dietaryRestrictions.push('vegan');
+      }
+      if (search.vegetarian) {
+        dietaryRestrictions.push('vegetarian');
+      }
+
+      const searchEvent: SearchEvent = {
+        keywords: search.keywords ?? '',
+        dishType: search.dishType ?? [],
+        dietaryRestrictions: dietaryRestrictions,
+      };
+
+      return searchEvent;
+    }),
+  );
+
+  public spinWheel = signal(false);
+
+  private recipes$ = this.searchEvent$.pipe(
+    tap(() => this.spinWheel.set(true)),
+    switchMap((searchEvent) =>
+      this.getRecipes(searchEvent).pipe(
+        tap(() => this.spinWheel.set(false)),
+        catchError((error) => {
+          this.spinWheel.set(false);
+          console.error(error);
+          return of(null);
+        }),
+      ),
+    ),
+    shareReplay(1),
+  );
+
+  public recipes = toSignal(this.recipes$);
 
   public getRecipes(searchEvent: SearchEvent): Observable<Recipe[]> {
     const source$ = this.httpClient.get<any>(this.apiUrl, {

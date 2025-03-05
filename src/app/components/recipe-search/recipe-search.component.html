@@ -1,7 +1,7 @@
 <div class="parent">
   <h2>Recipe Search</h2>
 
-  <form [formGroup]="searchForm" (ngSubmit)="formSubmit.next()">
+  <form [formGroup]="searchForm" (ngSubmit)="onFormSubmit()">
     <mat-form-field>
       <mat-label>Keywords</mat-label>
       <input [formControl]="searchForm.controls.keywords" matInput />

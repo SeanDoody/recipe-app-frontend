@@ -2,12 +2,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
+  BehaviorSubject,
   catchError,
   map,
   Observable,
   of,
   shareReplay,
-  Subject,
   switchMap,
   tap,
 } from 'rxjs';
@@ -30,7 +30,13 @@ export class RecipeSearchService {
     'Edamam-Account-User': 'sdoody95',
   });
 
-  public recipeSearch$ = new Subject<RecipeSearch>();
+  public recipeSearch$ = new BehaviorSubject<RecipeSearch>({
+    keywords: null,
+    dishType: null,
+    glutenFree: null,
+    vegan: null,
+    vegetarian: null,
+  });
 
   private searchEvent$ = this.recipeSearch$.pipe(
     map((search) => {

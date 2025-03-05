@@ -22,12 +22,14 @@ export class RecipeSearchComponent {
 
   public readonly DishType = DishType;
 
+  private previousSearch = this.recipeSearchService.recipeSearch$.value;
+
   public searchForm = new FormGroup<RecipeSearchForm>({
-    keywords: new FormControl(),
-    dishType: new FormControl(),
-    glutenFree: new FormControl(),
-    vegan: new FormControl(),
-    vegetarian: new FormControl(),
+    keywords: new FormControl(this.previousSearch.keywords),
+    dishType: new FormControl(this.previousSearch.dishType),
+    glutenFree: new FormControl(this.previousSearch.glutenFree),
+    vegan: new FormControl(this.previousSearch.vegan),
+    vegetarian: new FormControl(this.previousSearch.vegetarian),
   });
 
   public onFormSubmit(): void {

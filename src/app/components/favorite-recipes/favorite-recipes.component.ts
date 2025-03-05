@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe.interface';
 import { FavoriteRecipesService } from 'src/app/services/favorite-recipes/favorite-recipes.service';
 
@@ -7,6 +7,7 @@ import { FavoriteRecipesService } from 'src/app/services/favorite-recipes/favori
   templateUrl: './favorite-recipes.component.html',
   styleUrls: ['./favorite-recipes.component.scss'],
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FavoriteRecipesComponent {
   private favoriteRecipesService = inject(FavoriteRecipesService);

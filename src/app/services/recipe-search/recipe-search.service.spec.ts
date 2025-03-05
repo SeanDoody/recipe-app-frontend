@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { EdamamApiService } from './edamam-api.service';
+import { RecipeSearchService } from './recipe-search.service';
 
-describe('EdamamApiService', () => {
-  let service: EdamamApiService;
+describe('RecipeSearchService', () => {
+  let service: RecipeSearchService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(EdamamApiService);
+    service = TestBed.inject(RecipeSearchService);
   });
 
   it('should be created', () => {

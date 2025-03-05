@@ -6,7 +6,7 @@ import { RecipeSearchComponent } from './components/recipe-search/recipe-search.
 
 const routes: Routes = [
   { path: 'search', component: RecipeSearchComponent },
-  { path: 'search/:apiUri', component: RecipeDetailComponent },
+  { path: 'recipe/:apiUri', component: RecipeDetailComponent },
   { path: 'favorites', component: FavoriteRecipesComponent },
   { path: '', redirectTo: 'search', pathMatch: 'full' },
   { path: '**', redirectTo: 'search' },

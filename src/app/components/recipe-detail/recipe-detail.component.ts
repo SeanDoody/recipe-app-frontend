@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Recipe } from 'src/app/models/recipe.interface';
@@ -18,9 +19,12 @@ export class RecipeDetailComponent {
   private route = inject(ActivatedRoute);
 
   private apiUri: string = this.route.snapshot.params.apiUri;
-  public recipe$: Observable<Recipe> = this.edamamApiService.getRecipeByUri(
+
+  private recipe$: Observable<Recipe> = this.edamamApiService.getRecipeByUri(
     this.apiUri,
   );
+
+  public recipe = toSignal(this.recipe$);
 
   public isRecipeSaved(apiUri: string): boolean {
     return this.favoriteRecipesService.isRecipeSaved(apiUri);

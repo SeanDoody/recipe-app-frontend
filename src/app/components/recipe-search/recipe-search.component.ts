@@ -18,7 +18,7 @@ import {
   tap,
 } from 'rxjs';
 import { DishType } from 'src/app/models/dish-type.enum';
-import { RecipeSearchForm } from 'src/app/models/recipe-search-form.interface';
+import { RecipeSearchForm } from 'src/app/models/recipe-search.interface';
 import { Recipe } from 'src/app/models/recipe.interface';
 import { SearchEvent } from 'src/app/models/search-event.interface';
 import { FavoriteRecipesService } from 'src/app/services/favorite-recipes/favorite-recipes.service';

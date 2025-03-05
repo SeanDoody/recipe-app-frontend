@@ -21,8 +21,8 @@ import { DishType } from 'src/app/models/dish-type.enum';
 import { RecipeSearchForm } from 'src/app/models/recipe-search-form.interface';
 import { Recipe } from 'src/app/models/recipe.interface';
 import { SearchEvent } from 'src/app/models/search-event.interface';
-import { EdamamApiService } from 'src/app/services/edamam-api/edamam-api.service';
 import { FavoriteRecipesService } from 'src/app/services/favorite-recipes/favorite-recipes.service';
+import { RecipeSearchService } from 'src/app/services/recipe-search/recipe-search.service';
 
 @Component({
   selector: 'app-recipe-search',
@@ -32,7 +32,7 @@ import { FavoriteRecipesService } from 'src/app/services/favorite-recipes/favori
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RecipeSearchComponent {
-  private edamamApiService = inject(EdamamApiService);
+  private recipeSearchService = inject(RecipeSearchService);
   private favoriteRecipesService = inject(FavoriteRecipesService);
 
   public readonly DishType = DishType;
@@ -90,7 +90,7 @@ export class RecipeSearchComponent {
     filter((searchEvent) => !!searchEvent),
     tap(() => this.spinWheel.set(true)),
     switchMap((searchEvent) =>
-      this.edamamApiService.getRecipes(searchEvent).pipe(
+      this.recipeSearchService.getRecipes(searchEvent).pipe(
         catchError((error) => {
           console.error(error);
           return of(null);

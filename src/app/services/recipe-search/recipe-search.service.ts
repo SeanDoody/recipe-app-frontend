@@ -7,7 +7,7 @@ import { SearchEvent } from 'src/app/models/search-event.interface';
 @Injectable({
   providedIn: 'root',
 })
-export class EdamamApiService {
+export class RecipeSearchService {
   private httpClient = inject(HttpClient);
 
   private appId = 'e553ac8f';

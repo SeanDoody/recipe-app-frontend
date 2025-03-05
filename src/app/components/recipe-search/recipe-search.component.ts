@@ -1,4 +1,9 @@
-import { Component, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup } from '@angular/forms';
 import {
@@ -24,6 +29,7 @@ import { FavoriteRecipesService } from 'src/app/services/favorite-recipes/favori
   templateUrl: './recipe-search.component.html',
   styleUrls: ['./recipe-search.component.scss'],
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RecipeSearchComponent {
   private edamamApiService = inject(EdamamApiService);

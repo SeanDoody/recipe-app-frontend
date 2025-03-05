@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Recipe } from 'src/app/models/recipe.interface';
@@ -10,6 +10,7 @@ import { FavoriteRecipesService } from 'src/app/services/favorite-recipes/favori
   templateUrl: './recipe-detail.component.html',
   styleUrls: ['./recipe-detail.component.scss'],
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RecipeDetailComponent {
   private edamamApiService = inject(EdamamApiService);

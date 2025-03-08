@@ -1,5 +1,18 @@
+import { KeyValuePipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { MatOption } from '@angular/material/core';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
+import { MatInput } from '@angular/material/input';
+import { MatSelect } from '@angular/material/select';
+import { RouterLink } from '@angular/router';
 import { DishType } from 'src/app/models/dish-type.enum';
 import {
   RecipeSearch,
@@ -13,8 +26,21 @@ import { RecipeSearchService } from 'src/app/services/recipe-search/recipe-searc
   selector: 'app-recipe-search',
   templateUrl: './recipe-search.component.html',
   styleUrls: ['./recipe-search.component.scss'],
-  standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatSelect,
+    MatOption,
+    MatCheckbox,
+    NgClass,
+    RouterLink,
+    MatIcon,
+    KeyValuePipe,
+  ],
 })
 export class RecipeSearchComponent {
   private recipeSearchService = inject(RecipeSearchService);

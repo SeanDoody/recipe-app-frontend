@@ -1,5 +1,7 @@
+import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { MatIcon } from '@angular/material/icon';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Recipe } from 'src/app/models/recipe.interface';
@@ -10,8 +12,8 @@ import { RecipeSearchService } from 'src/app/services/recipe-search/recipe-searc
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
   styleUrls: ['./recipe-detail.component.scss'],
-  standalone: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [MatIcon, NgClass],
 })
 export class RecipeDetailComponent {
   private recipeSearchService = inject(RecipeSearchService);

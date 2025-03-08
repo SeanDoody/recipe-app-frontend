@@ -49,7 +49,9 @@ export class FavoriteRecipesService {
 
   public deleteFromFavorites(recipeToDelete: Recipe): void {
     this.favoriteRecipesSignal.update((favoriteRecipes) =>
-      favoriteRecipes.filter((recipe) => recipe !== recipeToDelete),
+      favoriteRecipes.filter(
+        (recipe) => recipe.apiUri !== recipeToDelete.apiUri,
+      ),
     );
   }
 }

@@ -1,0 +1,26 @@
+<div class="parent">
+  <h1>Sign In</h1>
+
+  <form [formGroup]="signInForm" (ngSubmit)="onSignInFormSubmit()">
+    <mat-form-field hideRequiredMarker>
+      <mat-label>Email</mat-label>
+      <input matInput email [formControl]="signInForm.controls.email" />
+    </mat-form-field>
+
+    <mat-form-field hideRequiredMarker>
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        [type]="passwordInputType()"
+        [formControl]="signInForm.controls.password"
+      />
+      <button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
+        <mat-icon>{{ passwordIcon() }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <button mat-flat-button>Submit</button>
+  </form>
+
+  <p>{{ signInResult()?.message }}</p>
+</div>

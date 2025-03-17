@@ -1,1 +1,51 @@
-<p>create-account works!</p>
+<div class="parent">
+  <h1>Create Your Account</h1>
+
+  <form
+    [formGroup]="createAccountForm"
+    (ngSubmit)="onCreateAccountFormSubmit()"
+  >
+    <mat-form-field hideRequiredMarker>
+      <mat-label>First Name</mat-label>
+      <input matInput [formControl]="createAccountForm.controls.firstName" />
+    </mat-form-field>
+
+    <mat-form-field hideRequiredMarker>
+      <mat-label>Last Name</mat-label>
+      <input matInput [formControl]="createAccountForm.controls.lastName" />
+    </mat-form-field>
+
+    <mat-form-field hideRequiredMarker>
+      <mat-label>Email</mat-label>
+      <input matInput email [formControl]="createAccountForm.controls.email" />
+    </mat-form-field>
+
+    <mat-form-field hideRequiredMarker>
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        [type]="passwordInputType()"
+        [formControl]="createAccountForm.controls.password"
+      />
+      <button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
+        <mat-icon>{{ passwordIcon() }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field hideRequiredMarker>
+      <mat-label>Confirm Password</mat-label>
+      <input
+        matInput
+        [type]="passwordInputType()"
+        [formControl]="createAccountForm.controls.confirmPassword"
+      />
+      <button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
+        <mat-icon>{{ passwordIcon() }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <button mat-flat-button>Submit</button>
+  </form>
+
+  <p>{{ createAccountResult()?.message }}</p>
+</div>

@@ -88,10 +88,10 @@ export class SignInComponent {
   private signIn$ = new Subject<SignInAttempt>();
 
   private signInResult$ = this.signIn$.pipe(
-    switchMap((signInAttempt) =>
+    switchMap((attempt) =>
       this.authService.signInWithEmailAndPassword(
-        signInAttempt.email,
-        signInAttempt.password,
+        attempt.email,
+        attempt.password,
       ),
     ),
   );

@@ -12,7 +12,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
+import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import {
   MatFormField,
@@ -39,9 +39,10 @@ interface SignInForm {
   styleUrl: './sign-in.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    MatButtonModule,
+    MatButton,
     MatFormField,
     MatIcon,
+    MatIconButton,
     MatInput,
     MatLabel,
     MatSuffix,

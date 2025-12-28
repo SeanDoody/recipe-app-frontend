@@ -1,5 +1,5 @@
 import { KeyValuePipe, NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -26,7 +26,6 @@ import { RecipeSearchService } from 'src/app/services/recipe-search/recipe-searc
   selector: 'app-recipe-search',
   templateUrl: './recipe-search.component.html',
   styleUrls: ['./recipe-search.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     FormsModule,
     ReactiveFormsModule,
